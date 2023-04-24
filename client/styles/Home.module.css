@@ -1,0 +1,139 @@
+/*style toan trang*/
+.containerCol {
+  display: grid;
+  grid-template-columns: 1fr 4fr; /* cột 1 rộng hơn cột 2 */
+  grid-template-rows: auto; /* chiều cao của container theo nội dung */
+  text-align: center;
+  justify-content: center;
+}
+
+/*slideBar*/
+.column1 {
+  background-color: #ffffff;
+  border-right: 1px inset #b7b7b7;
+  height: 740px;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/*content*/
+.column2 {
+  background-color: #ffffff;
+  height: auto;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow-y: scroll; /*cho phép box bên trái di chuyển theo thanh kéo trang khi nội dung quá dài.*/
+}
+
+/*button cua lesson,game,flashcard,account*/
+.button1 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  background: #fff4cf;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.button1:hover {
+  background-color: #f6b51f;
+}
+
+/*button cua japper*/
+.button2 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  mix-blend-mode: normal;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  font-family: "Inter";
+  justify-content: center;
+  /*thu tu cac dong co anh huong den cach bai tri*/
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+/*button cua kanji, grammar, vocab*/
+.button3 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  background: #ffffff;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  margin-right: 80px;
+  margin-left: 80px;
+}
+.button3:hover {
+  background-color: #d5d5d5;
+}
+
+/*box cua lesson*/
+.box1 {
+  width: 1140px;
+  height: 180px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #615e5e; 
+  background: #ffffff;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+}
+
+/*box cua ten bai hoc*/
+.box2 {
+  box-sizing: border-box;
+  background: #fff4cf;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 1100px;
+  height: 100px;
+  text-align: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+/*style cua chu*/
+.japper {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 61px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+}
+.japper:hover {
+  color: #1b4f79;
+}
+/*style cua chu o cac button cua menu*/
+.lesson {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #323030;
+  justify-content: center;
+}
+
