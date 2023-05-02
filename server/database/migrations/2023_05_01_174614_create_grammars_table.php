@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('lesson_id')->references('id')->on('lessons');
             $table->string('structure', 255);
             $table->text('explanation');
+            $table->text('example');
             $table->timestamps();
         });
     }
