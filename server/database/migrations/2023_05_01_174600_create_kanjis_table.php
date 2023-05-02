@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('lesson_id')->references('id')->on('lessons');
             $table->string('kanji', 10);
-            $table->string('chinese_sound', 50);
+            $table->string('kunyomi', 50);
+            $table->string('onyomi', 50);
             $table->text('word');
             $table->timestamps();
         });

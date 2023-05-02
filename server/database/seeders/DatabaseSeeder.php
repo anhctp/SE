@@ -28,53 +28,60 @@ class DatabaseSeeder extends Seeder
         // ]);
         DB::table('lessons')->insert([
             ['title' => 'Lesson 1: はじめまして'],
-            // ['title' => 'Lesson 2: これから　お世話に　なります'],
+            ['title' => 'Lesson 2: これから　お世話に　なります'],
         ]);
         
         DB::table('vocabularies')->insert([
-            ['lesson_id' => '1', 'word' => 'いきます', 'meaning' => 'đi'],
-            ['lesson_id' => '1', 'word' => 'きます', 'meaning' => 'đến'],
-            ['lesson_id' => '1', 'word' => 'かえります', 'meaning' => 'về'],
-            ['lesson_id' => '1', 'word' => 'がっこう', 'meaning' => 'trường học'],
-            ['lesson_id' => '1', 'word' => 'スーパー', 'meaning' => 'siêu thị'],
+            ['lesson_id' => '1', 'word' => 'わたし', 'meaning' => 'I'],
+            ['lesson_id' => '1', 'word' => 'あなた', 'meaning' => 'you'],
+            ['lesson_id' => '1', 'word' => 'せんせい', 'meaning' => 'teacher'],
+            ['lesson_id' => '1', 'word' => 'がくせい', 'meaning' => 'student'],
+            ['lesson_id' => '1', 'word' => 'かいしゃいん', 'meaning' => 'company employee'],
         ]);
 
         DB::table('grammars')->insert([
             ['lesson_id' => '1', 
-            'structure' => 'Trợ từ へ', 
-            'explanation' => 'Dùng để chỉ phương hướng. Thường đi với động từ chỉ sự di chuyển', 
-            'example' => 'きのう　どこへ　いきましたか。'],
+            'structure' => 'Particle は', 
+            'explanation' => 'The particle は indicates that the word before it is the topic of the sentence. You select a noun you want to talk about, add は to show that it is the topic and give a statement about the topic.', 
+            'example' => 'わたしは　マイク　ミラー です。'],
 
             ['lesson_id' => '1', 
-            'structure' => 'Trợ từ は', 
-            'explanation' => 'Danh từ trước は là chủ đề của câu. Dùng は để giới thiệu một đề tài mà người nói muốn đề cập đến', 
-            'example' => 'わたしは　はたちです。'],
+            'structure' => 'です', 
+            'explanation' => 'Nouns used with です work as predicates. です indicates judgement or assertion.', 
+            'example' => 'わたしは　エンジニア　です。'],
+
+            ['lesson_id' => '1', 
+            'structure' => 'も', 
+            'explanation' => 'も is added after a topic instead of はwhen the statement about the topic is the same as the previous topic.', 
+            'example' => 'ミラーさんは　かいしゃいん　です。グプタさんも　かいしゃいん　です。'],
             
         ]);       
 
         DB::table('kanjis')->insert([
             ['lesson_id' => '1', 
-            'kanji' => 'あの人', 
-            'chinese_sound' => 'NHÂN', 
-            'word' => 'あのひと'],
+            'kanji' => '私', 
+            'kunyomi' => 'わたし, わたくし', 
+            'onyomi' => 'シ',
+            'word' => '私'],
 
             ['lesson_id' => '1', 
-            'kanji' => 'あの方', 
-            'chinese_sound' => 'PHƯƠNG', 
-            'word' => 'あのかた'],
+            'kanji' => '人', 
+            'kunyomi' => 'ひと', 
+            'onyomi' => 'ジン, ニン',
+            'word' => 'あのひと'],
         ]);   
 
         DB::table('questions')->insert([
             ['lesson_id' => '1',
-            'question' => 'いきます nghĩa là: ',
-            't_ans' => 'đi',
-            'f_ans1' => 'đến',
-            'f_ans2' => 'về',
-            'f_ans3' => 'trường học'],
+            'question' => 'わたし means: ',
+            't_ans' => 'I',
+            'f_ans1' => 'you',
+            'f_ans2' => 'teacher',
+            'f_ans3' => 'student'],
 
             ['lesson_id' => '1',
-            'question' => 'きのう　どこ＿＿＿　いきましたか。',
-            't_ans' => 'へ',
+            'question' => 'ミラーさんは　かいしゃいん　です。グプタさん___　かいしゃいん　です。',
+            't_ans' => 'も',
             'f_ans1' => 'で',
             'f_ans2' => 'と',
             'f_ans3' => 'は'],
