@@ -28,13 +28,14 @@
   color: #000000;
 }
 
-/*box cua phan tieu de*/
+/*box cua phan tieu de cua bai hoc*/
 .box3 {
+  text-decoration: none;
   box-sizing: border-box;
   width: 367px;
   height: 57px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -53,5 +54,104 @@
   color: #000000;
 }
 
-/*content cua vocab*/
+/*bang cua vocab*/
+.table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  width: 1050px;
 
+  margin-left: 40px;
+  margin-right: 40px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #000000;
+
+  color: #000000;
+}
+.th {
+  display: table-cell;
+  vertical-align: inherit;
+
+  width: 650px;
+  height: 30px;
+  background: rgba(255, 244, 207, 0.8);
+  border: 1px solid #000000;
+}
+.th1 {
+  display: table-cell;
+  vertical-align: inherit;
+
+  width: 400px;
+  height: 30px;
+  background: rgba(255, 244, 207, 0.8);
+  border: 1px solid #000000;
+}
+/*kanji*/
+.box4 {
+  display: flex;
+  text-align: center;
+
+  box-sizing: border-box;
+  width: 620px;
+  height: 400px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #000000;
+}
+.button {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  background-color: #ffffff;
+}
+
+/*flashcard*/
+.flashcard {
+  position: relative;
+  width: 640;
+  height: 400px;
+  perspective: 1000px; /* Tạo hiệu ứng 3D */
+}
+
+.flashcard .front, .flashcard .back {
+  position:absolute;
+  backface-visibility: hidden; /* Ẩn phía sau của thẻ */
+  transition: transform 0.6s; /* Tạo hiệu ứng lật */
+  
+  display: flex;
+  text-align: center;
+  box-sizing: border-box;
+  width: 620px;
+  height: 400px;
+  margin-left: 262px;
+
+  border: 1px solid #000000;
+}
+
+.flashcard .front {
+  transform: rotateX(0deg); /* Thẻ mặt trước */
+}
+
+.flashcard .back {
+  transform: rotateX(180deg); /* Thẻ mặt sau */
+}
+
+.flashcard:hover .front {
+  transform: rotateX(180deg); /* Lật thẻ khi rê chuột qua thẻ */
+}
+
+.flashcard:hover .back {
+  transform: rotateX(0deg); /* Lật thẻ khi rê chuột qua thẻ */
+}
