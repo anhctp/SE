@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\FlashcardController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -28,7 +29,14 @@ Route::get('lesson/{id}/grammar', [LessonController::class, 'viewGrammar']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('profile', [UserController::class,'show']);
-    Route::post('profile', [UserController::class,'profileUpdate']);
+    //logout
     Route::post('logout', [AuthController::class, 'logout']);
+    //profile
+    Route::get('profile', [UserController::class,'show']);
+    Route::put('profile', [UserController::class,'profileUpdate']);
+    //flashcard
+    Route::get('flashcards', [FlashcardController::class, 'show']);
+    Route::post('flashcards', [FlashcardController::class, 'store']);
+    Route::put('flashcard/{id}', [FlashcardController::class, 'update']);
+    Route::delete('flashcard/{id}', [FlashcardController::class, 'destroy']);
 });
