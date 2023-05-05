@@ -67,7 +67,7 @@ class ProgressController extends Controller
             $question_num = DB::table('questions')
             ->where('questions.lesson_id', '=', $id)
             ->count();
-            if($progress->score == 2) {
+            if($progress->score == $question_num) {
                 $progress->done = 1;
                 $progress->update();
             }  
