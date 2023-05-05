@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('flashcards', [FlashcardController::class, 'store']);
     Route::put('flashcard/{id}', [FlashcardController::class, 'update']);
     Route::delete('flashcard/{id}', [FlashcardController::class, 'destroy']);
-
+    
     //admin
     Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
         Route::get('accounts', [UserController::class,'accounts']);
@@ -52,9 +52,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('lesson/{id}/question/{question_id}', [ProgressController::class, 'check']);
 
-    //admin
-    Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
-        Route::get('accounts', [UserController::class,'accounts']);
-        Route::delete('account/{id}', [UserController::class,'destroyAccount']);
-    });
 });
