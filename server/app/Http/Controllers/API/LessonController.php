@@ -13,7 +13,6 @@ class LessonController extends Controller
         $lessons = Lesson::all();
         return response()->json($lessons);
     }
-
     public function viewVocabulary($id) {
         $result = DB::table('lessons')
             ->join('vocabularies', 'lessons.id', '=', 'vocabularies.lesson_id')
@@ -31,7 +30,6 @@ class LessonController extends Controller
             ->get();
         return response()->json($result);
     }
-
     public function viewGrammar($id) {
         $result = DB::table('lessons')
             ->join('grammars', 'lessons.id', '=', 'grammars.lesson_id')
@@ -41,12 +39,14 @@ class LessonController extends Controller
         return response()->json($result);
     }
 
-    public function viewQuestion($id) {
+    public function viewQuestion($id, $question_id) {
         $result = DB::table('questions')
             ->join('lessons', 'lessons.id', '=', 'questions.lesson_id')
             ->select('lessons.title', 'questions.question', 'questions.t_ans', 'questions.f_ans1', 'questions.f_ans2', 'questions.f_ans3')
-            ->where('questions.lesson_id', '=', $id)
+            ->where('questions.id', '=', $question_id)
             ->get();
+        
         return response()->json($result);
     }
+
 }
