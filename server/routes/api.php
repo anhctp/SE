@@ -1,11 +1,14 @@
 <?php
 
+namespace App\Http\Controllers\API;
+
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\FlashcardController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\UserController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\ProgressController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,7 @@ Route::get('lessons', [LessonController::class, 'index']);
 Route::get('lesson/{id}/vocabulary', [LessonController::class, 'viewVocabulary']);
 Route::get('lesson/{id}/kanji', [LessonController::class, 'viewKanji']);
 Route::get('lesson/{id}/grammar', [LessonController::class, 'viewGrammar']);
-Route::get('lesson/{id}/question', [LessonController::class, 'viewQuestion']);
+Route::get('lesson/{id}/question/{question_id}', [LessonController::class, 'viewQuestion']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -46,4 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('accounts', [UserController::class,'accounts']);
         Route::delete('account/{id}', [UserController::class,'destroyAccount']);
     });
+
+    Route::post('lesson/{id}/question/{question_id}', [ProgressController::class, 'check']);
+
 });
