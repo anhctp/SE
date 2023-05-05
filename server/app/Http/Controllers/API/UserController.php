@@ -27,4 +27,15 @@ class UserController extends Controller
         ]);
         return response()->json("Updated");
     }
+
+    public function accounts() {
+        $accounts = User::all();
+        return response()->json($accounts);
+    }
+
+    public function destroyAccount($id){
+        $account = User::find($id);
+        $account->delete();
+        return response()->json("deleted");
+    }
 }
