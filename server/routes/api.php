@@ -26,6 +26,7 @@ Route::get('lessons', [LessonController::class, 'index']);
 Route::get('lesson/{id}/vocabulary', [LessonController::class, 'viewVocabulary']);
 Route::get('lesson/{id}/kanji', [LessonController::class, 'viewKanji']);
 Route::get('lesson/{id}/grammar', [LessonController::class, 'viewGrammar']);
+Route::get('lesson/{id}/question', [LessonController::class, 'viewQuestion']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
