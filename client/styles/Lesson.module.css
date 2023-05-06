@@ -1,3 +1,12 @@
+/*font*/
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("../public/avenir_ff/AvenirLTStd-Black.otf") format("truetype");
+
+  font-family: "MyCustomFont1";
+  src: url("../public/avenir_ff/AvenirLTStd-Roman.otf") format("truetype");
+}
+
 /*content cua grammar*/
 .box1 {
   width: 1100px;

@@ -1,0 +1,101 @@
+/*slideBar*/
+.column1 {
+  background-color: #ffffff;
+  border-right: 1px inset #878686;
+  height: 740px;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/*button cua lesson,flashcard,account*/
+.button1 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: flex;
+  background: #fff4cf;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 200px;
+  height: 60px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+/* Định dạng phong cách cho khi nút được di chuột qua */
+.button1:hover {
+  background: #f6b51f;
+}
+/* Định dạng phong cách cho khi nút được chọn */
+.button1:focus {
+  background: #f6b51f;
+}
+.activeButton1 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: flex;
+  background: #f6b51f;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 200px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*button cua japper*/
+.button2 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  mix-blend-mode: normal;
+  width: 250px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter";
+  /*thu tu cac dong co anh huong den cach bai tri*/
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 80px;
+}
+
+/*font*/
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("../public/avenir_ff/AvenirLTStd-Black.otf") format("truetype");
+
+  font-family: "MyCustomFont1";
+  src: url("../public/avenir_ff/AvenirLTStd-Roman.otf") format("truetype");
+}
+
+/*style cua chu*/
+.japper {
+  color: #f6b51f;
+  font-family: "MyCustomFont";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 72px;
+  line-height: 61px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.japper:hover {
+  color: #1b4f79;
+}
+
+/*style cua chu o cac button cua menu*/
+.lesson {
+  font-family: "MyCustomFont1";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  color: #323030;
+  justify-content: center;
+}

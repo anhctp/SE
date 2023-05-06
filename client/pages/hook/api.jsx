@@ -1,8 +1,14 @@
-import useSWR from "swr"
-import Axios from "axios"
-import { useEffect } from "react"
-import { useRouter } from "next/router"
+import useSWR from "swr";
+import Axios from "axios";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+/*hook useState để lưu trữ dữ liệu được trả về từ API endpoint, 
+và hook useEffect để gửi yêu cầu GET đến API endpoint khi component được tải lần đầu tiên. */
 
+const res = await axios.get('http://localhost:3000');
+const data = res.data;
+
+const NEXT_PUBLIC_BACKEND_URL = "http://localhost:8000";
 const axios = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
   headers: {
