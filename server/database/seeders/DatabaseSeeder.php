@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         DB::table('lessons')->insert([
-            ['title' => 'Lesson 1: はじめまして'],
-            ['title' => 'Lesson 2: これから　お世話に　なります'],
+            ['title' => 'はじめまして'],
+            ['title' => 'これから　お世話に　なります'],
         ]);
         
         DB::table('vocabularies')->insert([
