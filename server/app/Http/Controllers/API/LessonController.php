@@ -38,4 +38,15 @@ class LessonController extends Controller
             ->get();
         return response()->json($result);
     }
+
+    public function viewQuestion($id, $question_id) {
+        $result = DB::table('questions')
+            ->join('lessons', 'lessons.id', '=', 'questions.lesson_id')
+            ->select('lessons.title', 'questions.question', 'questions.t_ans', 'questions.f_ans1', 'questions.f_ans2', 'questions.f_ans3')
+            ->where('questions.id', '=', $question_id)
+            ->get();
+        
+        return response()->json($result);
+    }
+
 }

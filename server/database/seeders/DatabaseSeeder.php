@@ -11,6 +11,7 @@ use App\Models\Kanji;
 use App\Models\Question;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 class DatabaseSeeder extends Seeder
@@ -20,17 +21,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('12345678'),
+            'role' => '1',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         DB::table('lessons')->insert([
             ['title' => 'Lesson 1: はじめまして'],
             ['title' => 'Lesson 2: これから　お世話に　なります'],
         ]);
-        
+
         DB::table('vocabularies')->insert([
             ['lesson_id' => '1', 'word' => 'わたし', 'meaning' => 'I'],
             ['lesson_id' => '1', 'word' => 'あなた', 'meaning' => 'you'],
@@ -40,36 +42,36 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('grammars')->insert([
-            ['lesson_id' => '1', 
-            'structure' => 'Particle は', 
-            'explanation' => 'The particle は indicates that the word before it is the topic of the sentence. You select a noun you want to talk about, add は to show that it is the topic and give a statement about the topic.', 
+            ['lesson_id' => '1',
+            'structure' => 'Particle は',
+            'explanation' => 'The particle は indicates that the word before it is the topic of the sentence. You select a noun you want to talk about, add は to show that it is the topic and give a statement about the topic.',
             'example' => 'わたしは　マイク　ミラー です。'],
 
-            ['lesson_id' => '1', 
-            'structure' => 'です', 
-            'explanation' => 'Nouns used with です work as predicates. です indicates judgement or assertion.', 
+            ['lesson_id' => '1',
+            'structure' => 'です',
+            'explanation' => 'Nouns used with です work as predicates. です indicates judgement or assertion.',
             'example' => 'わたしは　エンジニア　です。'],
 
-            ['lesson_id' => '1', 
-            'structure' => 'も', 
-            'explanation' => 'も is added after a topic instead of はwhen the statement about the topic is the same as the previous topic.', 
+            ['lesson_id' => '1',
+            'structure' => 'も',
+            'explanation' => 'も is added after a topic instead of はwhen the statement about the topic is the same as the previous topic.',
             'example' => 'ミラーさんは　かいしゃいん　です。グプタさんも　かいしゃいん　です。'],
-            
-        ]);       
+
+        ]);
 
         DB::table('kanjis')->insert([
-            ['lesson_id' => '1', 
-            'kanji' => '私', 
-            'kunyomi' => 'わたし, わたくし', 
+            ['lesson_id' => '1',
+            'kanji' => '私',
+            'kunyomi' => 'わたし, わたくし',
             'onyomi' => 'シ',
             'word' => '私'],
 
-            ['lesson_id' => '1', 
-            'kanji' => '人', 
-            'kunyomi' => 'ひと', 
+            ['lesson_id' => '1',
+            'kanji' => '人',
+            'kunyomi' => 'ひと',
             'onyomi' => 'ジン, ニン',
             'word' => 'あのひと'],
-        ]);   
+        ]);
 
         DB::table('questions')->insert([
             ['lesson_id' => '1',
@@ -85,7 +87,6 @@ class DatabaseSeeder extends Seeder
             'f_ans1' => 'で',
             'f_ans2' => 'と',
             'f_ans3' => 'は'],
-            
-        ]);  
+        ]);
     }
 }

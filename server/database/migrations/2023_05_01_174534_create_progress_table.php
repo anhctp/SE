@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('lesson_id')->references('id')->on('lessons');
+            $table->integer('score');
             $table->boolean('done');
             $table->timestamps();
         });
