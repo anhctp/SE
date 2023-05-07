@@ -3,6 +3,8 @@ import modules from "../../styles/Lesson.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import AddCardModal from "./addCardModal";
+import { Modal } from "antd";
 
 export default function Flashcard() {
   const router = useRouter();
@@ -14,6 +16,7 @@ export default function Flashcard() {
     { question: "Question 4", answer: "Answer 4" },
     { question: "Question 5", answer: "Answer 5" },
   ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
@@ -86,29 +89,29 @@ export default function Flashcard() {
         </div>
 
         <div className={styles.column2}>
-          <Link
-            href="/client/flashcard"
+          <div
+            style={{ cursor: "pointer" }}
             className={
               router.pathname === "/client/flashcard"
                 ? modules.box3
                 : modules.box3
             }
+            onClick={() => setIsModalOpen(true)}
           >
             Create Flashcard
-          </Link>
+          </div>
 
-            <div
-              className={`${modules.flashcard} ${flipped ? modules.hover : ""}`}
-              onClick={handleClick}
-            >
-              <div className={modules.front}>
-                <p>This is the front of the card.</p>
-              </div>
-              <div className={modules.back}>
-                <p>This is the back of the card.</p>
-              </div>
+          <div
+            className={`${modules.flashcard} ${flipped ? modules.hover : ""}`}
+            onClick={handleClick}
+          >
+            <div className={modules.front}>
+              <p>This is the front of the card.</p>
             </div>
-
+            <div className={modules.back}>
+              <p>This is the back of the card.</p>
+            </div>
+          </div>
           <div>
             <button className={modules.button} onClick={handlePrevCard}>
               {"<"}
@@ -122,6 +125,10 @@ export default function Flashcard() {
           </div>
         </div>
       </div>
+      <AddCardModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      ></AddCardModal>
     </main>
   );
 }

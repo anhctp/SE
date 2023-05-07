@@ -9,9 +9,11 @@
 
 /*slideBar*/
 .column1 {
+  font-family: "Feather";
   background-color: #ffffff;
   border-right: 1px inset #b7b7b7;
-  height: 740px;
+  min-height: 100vh;
+  height: 100%;
   text-align: center;
   justify-content: center;
   box-sizing: border-box;
@@ -41,6 +43,9 @@
   margin: auto;
   margin-bottom: 15px;
 }
+.button1 > div {
+  font-family: "Feather";
+}
 /* Định dạng phong cách cho khi nút được di chuột qua */
 .button1:hover {
   background: #f6b51f;
@@ -62,7 +67,9 @@
   margin: auto;
   margin-bottom: 15px;
 }
-
+.activeButton1 > div {
+  font-family: "Feather";
+}
 /*button cua japper*/
 .button2 {
   text-decoration: none; /*bỏ các kiểu như underline*/
@@ -77,7 +84,9 @@
   margin-top: 30px;
   margin-bottom: 100px;
 }
-
+.button2 > div {
+  font-family: "Feather";
+}
 /*button cua kanji, grammar, vocab*/
 .button3 {
   text-decoration: none; /*bỏ các kiểu như underline*/
@@ -176,5 +185,3 @@
   color: #323030;
   justify-content: center;
 }
-
-

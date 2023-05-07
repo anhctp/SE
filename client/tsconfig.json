@@ -21,7 +21,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "components/Header.js",
+    "components/Spinner.js",
+    "components/LoadingButton.js"
   ],
   "exclude": [
     "node_modules"
