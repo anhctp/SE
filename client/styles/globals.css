@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Feather";
+  src: url("/fonts/feather-2-cufonfonts/feather_bold_by_typicalbro44_dee263c.ttf");
+}
 html,
 body {
   padding: 0;

@@ -7,6 +7,21 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
+=======
+/*slideBar*/
+.column1 {
+  font-family: "Feather";
+  background-color: #ffffff;
+  border-right: 1px inset #b7b7b7;
+  min-height: 100vh;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 /*content*/
 .column2 {
   background-color: #ffffff;
@@ -18,7 +33,69 @@
   overflow-y: scroll; /*cho phép box bên trái di chuyển theo thanh kéo trang khi nội dung quá dài.*/
 }
 
+<<<<<<< HEAD
 /*button cua kanji, grammar, vocab, question*/
+=======
+/*button cua lesson,game,flashcard,account*/
+.button1 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  background: #fff4cf;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.button1 > div {
+  font-family: "Feather";
+}
+/* Định dạng phong cách cho khi nút được di chuột qua */
+.button1:hover {
+  background: #f6b51f;
+}
+/* Định dạng phong cách cho khi nút được chọn */
+.button1:focus {
+  background: #f6b51f;
+}
+.activeButton1 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  background: #f6b51f;
+  mix-blend-mode: normal;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.activeButton1 > div {
+  font-family: "Feather";
+}
+/*button cua japper*/
+.button2 {
+  text-decoration: none; /*bỏ các kiểu như underline*/
+  display: inline-block;
+  mix-blend-mode: normal;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  font-family: "Inter";
+  /*thu tu cac dong co anh huong den cach bai tri*/
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+.button2 > div {
+  font-family: "Feather";
+}
+/*button cua kanji, grammar, vocab*/
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 .button3 {
   text-decoration: none; /*bỏ các kiểu như underline*/
   display: inline-flex;
@@ -107,6 +184,7 @@
   justify-content: center;
   color: #323030;
 }
+<<<<<<< HEAD
 
 /*font*/
 @font-face {
@@ -117,3 +195,5 @@
   src: url('../public/avenir_ff/AvenirLTStd-Roman.otf') format('truetype');
 }
 
+=======
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
