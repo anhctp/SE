@@ -1,4 +1,7 @@
 import styles from "../../styles/Home.module.css";
+<<<<<<< HEAD
+import Sidebar from "../component/sidebar";
+=======
 import { EditOutlined, UserOutlined, SearchOutlined } from "@ant-design/icons";
 import {
   Avatar,
@@ -20,11 +23,20 @@ import { useEffect, useState } from "react";
 import authSevice from "../../services/auth.service";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 
 import client from "../../utils/client";
 import dayjs from "dayjs";
 import { token } from "../../utils/token";
 export default function Account() {
+<<<<<<< HEAD
+  return (
+    <main>
+      <div className={styles.containerCol}>
+        <Sidebar />
+
+        <div className={styles.column2}>column2</div>
+=======
   const router = useRouter();
   const [profile, setProfile] = useState(null);
 
@@ -287,6 +299,7 @@ export default function Account() {
 
           {/* PROFILE ENDS */}
         </div>
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
       </div>
       <Modal
         title="Update Profile"

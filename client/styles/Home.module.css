@@ -7,6 +7,8 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
+=======
 /*slideBar*/
 .column1 {
   font-family: "Feather";
@@ -19,16 +21,21 @@
   box-sizing: border-box;
 }
 
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 /*content*/
 .column2 {
   background-color: #ffffff;
-  height: auto;
+  height: 740px;
   text-align: center;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   overflow-y: scroll; /*cho phép box bên trái di chuyển theo thanh kéo trang khi nội dung quá dài.*/
 }
 
+<<<<<<< HEAD
+/*button cua kanji, grammar, vocab, question*/
+=======
 /*button cua lesson,game,flashcard,account*/
 .button1 {
   text-decoration: none; /*bỏ các kiểu như underline*/
@@ -88,100 +95,105 @@
   font-family: "Feather";
 }
 /*button cua kanji, grammar, vocab*/
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 .button3 {
   text-decoration: none; /*bỏ các kiểu như underline*/
-  display: inline-block;
+  display: inline-flex;
   background: #ffffff;
   mix-blend-mode: normal;
   border: 1px solid #000000;
   border-radius: 20px;
   width: 200px;
+  height:50px;
   text-align: center;
   justify-content: center;
-  margin-right: 80px;
-  margin-left: 80px;
+  align-items: center;
+  margin-right: 30px;
+  margin-left: 30px;
+
+  font-family: 'MyCustomFont1';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  color: #323030;
 }
 .button3:hover {
-  background-color: #d5d5d5;
+  background-color: #ffcb42;
 }
 
 /*box cua lesson*/
 .box1 {
-  display: flexbox;
+  display: inline-flexbox;
   width: 1140px;
-  height: 180px;
+  height: 290px;
   box-sizing: border-box;
-  border-bottom: 1px solid #615e5e;
+  border-top: 1px solid #878686;
+  border-bottom: 1px solid #878686;
   background: #ffffff;
   text-align: center;
+  align-items: center;
   justify-content: center;
   margin: auto;
 }
 
 .box2 {
-  display: flex;
+  display: inline-flex;
   box-sizing: border-box;
   background: #fff4cf;
   mix-blend-mode: normal;
   border: 1px solid #000000;
   border-radius: 20px;
-  width: 1100px;
-  height: 100px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
+  width: 1050px;
+  height: 130px;
+  margin:40px auto 30px;
 }
 
 /*box cua so bai hoc*/
 .box3 {
-  display: inline-block;
-  width: 90px;
-  height: 36px;
-
+  width: 300px;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: -100px;
+  
+  font-family: 'MyCustomFont1';
   text-align: center;
-  justify-content: center;
-  margin-left: 15px;
-  margin-top: -20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  color: #323030;
 }
 
 /*box cua ten bai hoc*/
 .box4 {
-  display: inline-block;
-  width: 180px;
-  height: 36px;
+  width: 800px;
+  height: 70px;
+  margin-top: 50px;
+  margin-left: -100px;
 
+  font-family: 'MyCustomFont1';
   text-align: center;
-  justify-content: center;
-  margin-left: 357px;
-  margin-top: 0px;
-}
-
-/*style cua chu*/
-.japper {
-  font-family: "Inter";
   font-style: normal;
-  font-weight: 900;
-  font-size: 50px;
-  line-height: 61px;
-  display: flex;
+  font-weight: 600;
+  font-size: 32px;
+  display: inline-flex;
   align-items: center;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.85);
   justify-content: center;
-}
-.japper:hover {
-  color: #1b4f79;
-}
-/*style cua chu o cac button cua menu*/
-.lesson {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 30px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   color: #323030;
-  justify-content: center;
 }
+<<<<<<< HEAD
+
+/*font*/
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../public/avenir_ff/AvenirLTStd-Black.otf') format('truetype');
+
+  font-family: 'MyCustomFont1';
+  src: url('../public/avenir_ff/AvenirLTStd-Roman.otf') format('truetype');
+}
+
+=======
+>>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
