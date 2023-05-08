@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('grammars')->insert([
             ['lesson_id' => '1', 
-            'structure' => 'Particle は', 
+            'structure' => 'は', 
             'explanation' => 'The particle は indicates that the word before it is the topic of the sentence. You select a noun you want to talk about, add は to show that it is the topic and give a statement about the topic.', 
             'example' => 'わたしは　マイク　ミラー です。'],
 
