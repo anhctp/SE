@@ -7,8 +7,6 @@
   justify-content: center;
 }
 
-<<<<<<< HEAD
-=======
 /*slideBar*/
 .column1 {
   font-family: "Feather";
@@ -21,7 +19,6 @@
   box-sizing: border-box;
 }
 
->>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 /*content*/
 .column2 {
   background-color: #ffffff;
@@ -33,9 +30,7 @@
   overflow-y: scroll; /*cho phép box bên trái di chuyển theo thanh kéo trang khi nội dung quá dài.*/
 }
 
-<<<<<<< HEAD
 /*button cua kanji, grammar, vocab, question*/
-=======
 /*button cua lesson,game,flashcard,account*/
 .button1 {
   text-decoration: none; /*bỏ các kiểu như underline*/
@@ -95,7 +90,6 @@
   font-family: "Feather";
 }
 /*button cua kanji, grammar, vocab*/
->>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 .button3 {
   text-decoration: none; /*bỏ các kiểu như underline*/
   display: inline-flex;
@@ -184,7 +178,6 @@
   justify-content: center;
   color: #323030;
 }
-<<<<<<< HEAD
 
 /*font*/
 @font-face {
@@ -194,6 +187,3 @@
   font-family: 'MyCustomFont1';
   src: url('../public/avenir_ff/AvenirLTStd-Roman.otf') format('truetype');
 }
-
-=======
->>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
