@@ -14,11 +14,11 @@ export default function Sidebar() {
       <Link
         href="/"
         className={
-          router.pathname === "/" ||
-          router.pathname === "/client/lesson/grammar" ||
-          router.pathname === "/client/lesson/kanji" ||
-          router.pathname === "/client/lesson/vocab" ||
-          router.pathname === "/client/lesson/question"
+          router.pathname === "/" || router.pathname === "/client/lesson" ||
+          router.pathname === "/client/lesson/[id]/grammar" ||
+          router.pathname === "/client/lesson/[id]/kanji" ||
+          router.pathname === "/client/lesson/[id]/vocab" ||
+          router.pathname === "/client/lesson/[id]/question"
             ? styles.activeButton1
             : styles.button1
         }

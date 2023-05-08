@@ -1,7 +1,7 @@
-import styles from "../../../styles/Home.module.css";
+import styles from "../../../../styles/Home.module.css";
 import React, { useState } from "react";
-import Sidebar from "../../component/sidebar";
-import Create from "../../component/createQuestion";
+import Sidebar from "../../../component/sidebar";
+import Create from "../../../component/createQuestion";
 
 export default function Question() {
     return (

@@ -1,34 +1,48 @@
 import modules from "../../styles/Lesson.module.css";
-import { useState } from "react";
+
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 export default function Card() {
-  const [cards, setCards] = useState([
-    { question: "Question 1", answer: "Answer 1" },
-    { question: "Question 2", answer: "Answer 2" },
-    { question: "Question 3", answer: "Answer 3" },
-    { question: "Question 4", answer: "Answer 4" },
-    { question: "Question 5", answer: "Answer 5" },
-  ]);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
   const handleClick = () => {
     setFlipped(!flipped);
   };
 
-  const handleNextCard = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === cards.length - 1 ? 0 : prevIndex + 1
-    );
-    setFlipped(false);
-  };
+  const [flashcards, setflashcards] = useState([]);
+  const [lessonTitle, setLessonTitle] = useState("");
 
-  const handlePrevCard = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? cards.length - 1 : prevIndex - 1
-    );
-    setFlipped(false);
-  };
+  // Lấy Bearer token từ header của request
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(`http://localhost:8000/api/flashcards`);
+      /*, {
+        headers: {
+          Authorization: `Bearer ${yourBearerTokenHere}`, //cần thay yourBearertoken
+        },}
+      */
+      setflashcards(result.data);
+      if (result.data.length > 0) {
+        setLessonTitle(result.data[0].title); // Lấy title đầu tiên
+      }
+    };
+    fetchData();
+  }, []);
+
+  const [currentID, setCurrentID] = useState(0);
+
+  function handlePreviousID() {
+    if (currentID > 0) {
+      setCurrentID(currentID - 1);
+    }
+  }
+
+  function handleNextID() {
+    if (currentID < flashcards.length - 1) {
+      setCurrentID(currentID + 1);
+    }
+  }
 
   return (
     <main>
@@ -45,13 +59,13 @@ export default function Card() {
       </div>
 
       <div>
-        <button className={modules.button} onClick={handlePrevCard}>
+        <button className={modules.button} onClick={handlePreviousID}>
           {"<"}
         </button>
-        <span className="page-number">
-          {currentIndex + 1} / {cards.length}
+        <span className="ID-number">
+          {currentID + 1} / {flashcards.length}
         </span>
-        <button className={modules.button} onClick={handleNextCard}>
+        <button className={modules.button} onClick={handleNextID}>
           {">"}
         </button>
       </div>
