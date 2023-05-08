@@ -1,7 +1,6 @@
 import styles from "../../styles/Home.module.css";
-<<<<<<< HEAD
 import Sidebar from "../component/sidebar";
-=======
+
 import { EditOutlined, UserOutlined, SearchOutlined } from "@ant-design/icons";
 import {
   Avatar,
@@ -23,20 +22,12 @@ import { useEffect, useState } from "react";
 import authSevice from "../../services/auth.service";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
->>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
 
 import client from "../../utils/client";
 import dayjs from "dayjs";
 import { token } from "../../utils/token";
-export default function Account() {
-<<<<<<< HEAD
-  return (
-    <main>
-      <div className={styles.containerCol}>
-        <Sidebar />
 
-        <div className={styles.column2}>column2</div>
-=======
+export default function Account() {
   const router = useRouter();
   const [profile, setProfile] = useState(null);
 
@@ -110,24 +101,7 @@ export default function Account() {
   return (
     <main>
       <div className={styles.containerCol}>
-        <div className={styles.column1}>
-          <Link href="/" className={styles.button2}>
-            <div className={styles.japper}>Japper</div>
-          </Link>
-
-          <Link href="/client/lesson" className={styles.button1}>
-            <div className={styles.lesson}>Lesson</div>
-          </Link>
-          <Link href="/client/game" className={styles.button1}>
-            <div className={styles.lesson}>Game</div>
-          </Link>
-          <Link href="/client/flashcard" className={styles.button1}>
-            <div className={styles.lesson}>Flashcard</div>
-          </Link>
-          <Link href="/client/account" className={styles.button1}>
-            <div className={styles.lesson}>Account</div>
-          </Link>
-        </div>
+        <Sidebar />
 
         <div className={styles.column2}>
           {/* PROFILE STARTS */}
@@ -298,46 +272,50 @@ export default function Account() {
           </>
 
           {/* PROFILE ENDS */}
-        </div>
->>>>>>> f79664eeeff1dd636056a66f31f99dfb669a694e
-      </div>
-      <Modal
-        title="Update Profile"
-        open={isModalOpen}
-        onOk={formik.handleSubmit}
-        onCancel={handleCancel}
-      >
-        <Form
-          name="basic"
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 18 }}
-          style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
-          autoComplete="off"
-        >
-          <Form.Item
-            label="Fullname"
-            rules={[{ required: true, message: "Please input your username!" }]}
-          >
-            <Input
-              name="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-            />
-          </Form.Item>
 
-          <Form.Item
-            label="Email"
-            rules={[{ required: true, message: "Please input your email!" }]}
+          <Modal
+            title="Update Profile"
+            open={isModalOpen}
+            onOk={formik.handleSubmit}
+            onCancel={handleCancel}
           >
-            <Input
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
-          </Form.Item>
-        </Form>
-      </Modal>
+            <Form
+              name="basic"
+              labelCol={{ span: 6 }}
+              wrapperCol={{ span: 18 }}
+              style={{ maxWidth: 600 }}
+              initialValues={{ remember: true }}
+              autoComplete="off"
+            >
+              <Form.Item
+                label="Fullname"
+                rules={[
+                  { required: true, message: "Please input your username!" },
+                ]}
+              >
+                <Input
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="Email"
+                rules={[
+                  { required: true, message: "Please input your email!" },
+                ]}
+              >
+                <Input
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                />
+              </Form.Item>
+            </Form>
+          </Modal>
+        </div>
+      </div>
     </main>
   );
 }
