@@ -43,10 +43,10 @@ export default function Vocabulary() {
                 </tr>
                 {vocabularies.map((vocab) => (
                   <tr key={vocab.id}>
-                    <td className={modules.td1}>
+                    <td key={vocab.id} className={modules.td1}>
                       {vocab.word}
                     </td>
-                    <td className={modules.td}>
+                    <td key={vocab.id} className={modules.td}>
                       {vocab.meaning}
                     </td>
                   </tr>

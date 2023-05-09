@@ -1,31 +1,38 @@
 import modules from "../../styles/Lesson.module.css";
-
+import mode from "../../styles/flashcard.module.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import cookie from "cookie";
 
 export default function Card() {
-  const [flipped, setFlipped] = useState(false);
-
-  const handleClick = () => {
-    setFlipped(!flipped);
-  };
-
+  /* View flashcards */
   const [flashcards, setflashcards] = useState([]);
-  const [lessonTitle, setLessonTitle] = useState("");
 
-  // Lấy Bearer token từ header của request
+  // Truy cập thông tin người dùng từ Cookie
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`http://localhost:8000/api/flashcards`);
-      /*, {
-        headers: {
-          Authorization: `Bearer ${yourBearerTokenHere}`, //cần thay yourBearertoken
-        },}
-      */
-      setflashcards(result.data);
-      if (result.data.length > 0) {
-        setLessonTitle(result.data[0].title); // Lấy title đầu tiên
+      // Make a request to retrieve the CSRF token
+      await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
+        withCredentials: true, // Send cookies in cross-origin requests
+      });
+
+      // Get the CSRF token from the cookie
+      const token = cookie.parse(document.cookie)["XSRF-TOKEN"];
+
+      // Set the Authorization header with the bearer token
+      if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       }
+
+      const result = await axios
+        .get(`http://localhost:8000/api/flashcards`)
+        .catch((error) => {
+          if (error.response.status === 401 || error.response.status === 419) {
+            //Redirect the user to the login page
+            window.location.href = "../../../../auth/login";
+          }
+        });
+      setflashcards(result.data);
     };
     fetchData();
   }, []);
@@ -44,19 +51,118 @@ export default function Card() {
     }
   }
 
+  /* Update, Delete flashcard */
+  const [isEditing, setIsEditing] = useState(false);
+  const [front, setFront] = useState("");
+  const [back, setBack] = useState("");
+
+  const handleUpdate = () => {
+    // handle save here
+    setIsEditing(false);
+  };
+
+  const handleSave = async () => {
+    setIsEditing(false);
+    // Make a request to retrieve the CSRF token
+    await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
+      withCredentials: true, // Send cookies in cross-origin requests
+    });
+
+    // Get the CSRF token from the cookie
+    const token = cookie.parse(document.cookie)["XSRF-TOKEN"];
+
+    // Set the Authorization header with the bearer token
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/api/flashcard/${currentID}`,
+        {
+          front,
+          back,
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //DELETE
+  const [deleted, setDeleted] = useState(false);
+
+  const handleDelete = async () => {
+    setIsEditing(false);
+    // Make a request to retrieve the CSRF token
+    await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
+      withCredentials: true, // Send cookies in cross-origin requests
+    });
+
+    // Get the CSRF token from the cookie
+    const token = cookie.parse(document.cookie)["XSRF-TOKEN"];
+
+    // Set the Authorization header with the bearer token
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+
+    const response = await axios.delete(
+      `http://localhost:8000/api/flashcard/${currentID}`
+    );
+
+    if (response.success) {
+      setDeleted(true);
+    } else {
+      console.error(response.error);
+    }
+  };
+
+  if (deleted) {
+    return null;
+  }
+
   return (
     <main>
-      <div
-        className={`${modules.flashcard} ${flipped ? modules.hover : ""}`}
-        onClick={handleClick}
-      >
-        <div className={modules.front}>
-          <p>This is the front of the card.</p>
+      {flashcards.map((flashcard) => (
+        <div className={mode.flashcard} onClick={handleClick}>
+          <div className={mode.front}>
+            <p>{flashcard.front}</p>
+          </div>
+          <div className={mode.back}>
+            <p>{flashcard.back}</p>
+          </div>
         </div>
-        <div className={modules.back}>
-          <p>This is the back of the card.</p>
+      ))}
+
+      {!isEditing && (
+        <button className={modules.buttonSubmit} onClick={handleUpdate}>
+          Update
+        </button>
+      )}
+      {isEditing && (
+        <div>
+          <input
+            className={mode.input}
+            type="text"
+            value={front}
+            onChange={(e) => setFront(e.target.value)}
+          />
+          <input
+            className={mode.input}
+            type="text"
+            value={back}
+            onChange={(e) => setBack(e.target.value)}
+          />
+          <button className={modules.buttonSubmit} onClick={handleSave}>
+            Save
+          </button>
         </div>
-      </div>
+      )}
+
+      <button className={modules.buttonSubmit} onClick={handleDelete}>
+        Delete
+      </button>
 
       <div>
         <button className={modules.button} onClick={handlePreviousID}>

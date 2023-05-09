@@ -32,7 +32,6 @@
   justify-content: center;
 
   font-family: "MyCustomFont1";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
@@ -45,7 +44,6 @@
   width: 1000px;
   height: auto;
   font-family: "MyCustomFont1";
-  font-style: normal;
   font-weight: lighter;
   font-size: 24px;
 
@@ -54,7 +52,6 @@
 
 /*box cua phan tieu de cua bai hoc*/
 .box3 {
-  text-decoration: none;
   box-sizing: border-box;
   width: 600px;
   height: 70px;
@@ -68,12 +65,8 @@
   background: #ffba30e2;
   border: 1px solid #000000;
   border-radius: 20px;
-
   font-family: "MyCustomFont1";
-  font-style: normal;
-  font-weight: 400;
   font-size: 36px;
-  line-height: 24px;
 
   color: #000000;
 }
@@ -88,8 +81,6 @@
   margin-left: 40px;
   margin-right: 40px;
   font-family: "MyCustomFont1";
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   align-items: center;
@@ -154,7 +145,6 @@
   text-align: center;
 
   font-family: "MyCustomFont";
-  font-style: normal;
   margin-top: auto;
   margin-bottom: auto;
   font-weight: 400;
@@ -168,60 +158,23 @@
   border-left: #000000 1px inset;
 
   font-family: "MyCustomFont";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
 }
 .button {
   border-radius: 100%;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 20px;
+  padding: 0 8px;
   background-color: #ffffff;
-}
-
-/*flashcard*/
-.flashcard {
-  position: relative;
-  width: 640;
-  height: 400px;
-  perspective: 1000px; /* Tạo hiệu ứng 3D */
-}
-
-.flashcard .front,
-.flashcard .back {
-  position: absolute;
-  backface-visibility: hidden; /* Ẩn phía sau của thẻ */
-  transition: transform 0.6s; /* Tạo hiệu ứng lật */
-
-  display: flex;
+  border: #000000 1px solid;
   text-align: center;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  width: 620px;
-  height: 400px;
-  margin-left: 262px;
-
-  border: 1px solid #000000;
 }
-
-.flashcard .front {
-  transform: rotateX(0deg); /* Thẻ mặt trước */
-}
-
-.flashcard .back {
-  transform: rotateX(180deg); /* Thẻ mặt sau */
-}
-
-.flashcard:hover .front {
-  transform: rotateX(180deg); /* Lật thẻ khi rê chuột qua thẻ */
-}
-
-.flashcard:hover .back {
-  transform: rotateX(0deg); /* Lật thẻ khi rê chuột qua thẻ */
+.button:hover {
+  background-color: #ffb200;
 }
 
 /*questions*/
@@ -234,9 +187,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 .boxAnswer {
   display: flex;
-  border: #ffb200 1px solid;
+  border: 1px solid rgba(255, 178, 0, 0.8);
   border-radius: 20px;
   margin-left: auto;
   margin-top: 30px;
@@ -249,34 +203,99 @@
   padding-left: 20px;
 
   font-family: "MyCustomFont";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
 }
+.boxAnswer:hover {
+  background-color: rgba(255, 178, 0, 0.8);
+  border: #000000 1px solid;
+}
+.boxAnswerActive {
+  border: #000000 1px solid;
+  background-color: rgba(255, 178, 0, 0.8);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: auto;
+  width: 450px;
+  height: 50px;
+  text-align: left;
+  align-items: center;
+  padding-left: 20px;
+
+  font-family: "MyCustomFont";
+  font-weight: 400;
+  font-size: 24px;
+}
+
 .p {
   font-family: "MyCustomFont";
-  font-style: normal;
   font-weight: 600;
   font-size: 28px;
   text-align: left;
   padding-left: 100px;
 }
 .boxQuestion {
-  display: flex;
-  border: #ffb200 1px solid;
+  padding-top: 15px;
+  padding-left: 20px;
+  border: 1px solid rgba(255, 178, 0, 0.8);
   margin-left: auto;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   margin-right: auto;
-  width: 950px;
+  width: 980px;
   height: 150px;
-  border-radius: 50px;
+  border-radius: 30px;
   text-align: left;
-  align-items: center;
-  padding-left: 20px;
 
   font-family: "MyCustomFont";
-  font-style: normal;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 36px;
+}
+
+.buttonSubmit {
+  border: 1px solid rgba(255, 178, 0, 0.8);
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: auto;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "MyCustomFont";
+  font-weight: 400;
+  font-size: 24px;
+}
+.buttonSubmit:hover {
+  background-color: rgba(255, 178, 0, 0.8);
+}
+.correct {
+  border: rgb(96, 176, 96) 5px solid;
+  padding: 10px;
+  width: 500px;
+  height:60px;
+  font-weight: 900;
+  border-radius: 20px;
+
+  font-family: "MyCustomFont";
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.incorrect {
+  border: rgb(202, 53, 53) 5px solid;
+  padding: 10px;
+  width: 500px;
+  height:60px;
+  border-radius: 20px;
+
+  font-family: "MyCustomFont";
+  font-weight: 900;
+  font-weight: 400;
+  font-size: 24px;
 }
