@@ -40,13 +40,24 @@ class LessonController extends Controller
     }
 
     public function viewQuestion($id, $question_id) {
+        $question_num = DB::table('questions')
+            ->where('questions.lesson_id', '=', $id)
+            ->count();
+
         $result = DB::table('questions')
             ->join('lessons', 'lessons.id', '=', 'questions.lesson_id')
             ->select('lessons.title', 'questions.question', 'questions.t_ans', 'questions.f_ans1', 'questions.f_ans2', 'questions.f_ans3')
             ->where('questions.id', '=', $question_id)
             ->get();
         
-        return response()->json($result);
+        return response()->json(['question_num' => $question_num,
+            'title' => $result[0]->title,
+            'question' => $result[0]->question,
+            't_ans' => $result[0]->t_ans,
+            'f_ans1' => $result[0]->f_ans1,
+            'f_ans2' => $result[0]->f_ans2,
+            'f_ans3' => $result[0]->f_ans3 ]);
     }
-
 }
+
+
