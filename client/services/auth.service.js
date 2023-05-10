@@ -1,7 +1,9 @@
-import client from "../utils/client";
+import axios from "axios";
+import client, { BASE_URL } from "../utils/client";
 
 class AuthService {
-  static login(payload) {
+  static async login(payload) {
+    const response = await axios.get(`${BASE_URL}/sanctum/csrf-cookie`);
     return client.post("login", payload);
   }
   static register(payload) {
