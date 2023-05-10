@@ -10,6 +10,7 @@ module.exports = {
     ],
     theme: {
       extend: {
+      
         colors: {
           "ct-dark-600": "#222",
           "ct-dark-200": "#e5e7eb",
