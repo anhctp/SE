@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AuthService from "../../../services/auth.service";
 import { token } from "../../../utils/token";
 import { useRouter } from "next/router";
-
+import { notification } from "antd";
 import { object, string, TypeOf } from "zod";
 import { useEffect } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
@@ -27,6 +27,10 @@ const Login = () => {
   const handleLogin = async (values) => {
     try {
       const res = await AuthService.login(values);
+      if (res.status != 200) {
+        notification.error({ message: res.message });
+        return;
+      }
       token.set(res.token);
       router.push("/");
     } catch (error) {}
