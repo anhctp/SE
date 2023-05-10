@@ -1,17 +1,17 @@
 import axios from "axios";
 import { token } from "./token";
-export const BASE_URL = "http://locahost:8000";
+export const BASE_URL = "http://localhost:8000";
 
 const client = axios.create({
   baseURL: `${BASE_URL}/api/`,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true
 });
 
 client.interceptors.request.use((req) => {
   req.headers.Authorization = `Bearer ${token.get()}`;
-  req.headers["X-XSRF-TOKEN"] = getCSRFToken();
   return req;
 });
 

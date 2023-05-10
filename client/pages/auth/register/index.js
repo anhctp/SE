@@ -41,6 +41,7 @@ const Login = () => {
     try {
       setLoading(true);
       const res = await AuthService.register(values);
+      console.log(res);
       token.set(res.token);
       router.push("/");
       notification.success({ message: "Register successfully!" });

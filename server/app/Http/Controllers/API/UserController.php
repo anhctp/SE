@@ -14,12 +14,23 @@ class UserController extends Controller
     public function show()
     {
         $user = Auth()->user();
-        $complete = DB::table('users')
-        ->join('progress', 'users.id', '=', 'progress.user_id')
+        $user_id = auth()->user()->id;
+
+        $complete = DB::table('progress')
         ->select('progress.lesson_id')
-        ->where('progress.done', '=', 1)
+        ->where([
+            ['progress.done', '=', 1], 
+            ['progress.user_id', '=', $user_id]
+        ])
         ->get();
-        
+
+        if ($complete->isEmpty()) {
+            return response()->json([
+                'name' => $user->name,
+                'email' => $user->email,
+                'complete_lesson' => 0,
+            ]);
+        }
 
         return response()->json([
             'name' => $user->name,
