@@ -47,6 +47,7 @@ class LessonController extends Controller
             ->join('lessons', 'lessons.id', '=', 'questions.lesson_id')
             ->select('lessons.title', 'questions.question', 'questions.t_ans', 'questions.f_ans1', 'questions.f_ans2', 'questions.f_ans3')
             ->where('questions.id', '=', $question_id)
+            ->where('questions.lesson_id', '=', $id)
             ->get();
         
         return response()->json(['question_num' => $question_num,
@@ -55,7 +56,7 @@ class LessonController extends Controller
                                 't_ans' => $result[0]->t_ans,
                                 'f_ans1' => $result[0]->f_ans1,
                                 'f_ans2' => $result[0]->f_ans2,
-                                'f_ans3' => $result[0]->f_ans3 ]);
+                                'f_ans3' => $result[0]->f_ans3]);
     }
 }
 

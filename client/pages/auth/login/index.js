@@ -32,7 +32,7 @@ const Login = () => {
         return;
       }
       token.set(res.token);
-      router.push("/");
+      router.push(window.history.back(), token);
     } catch (error) {}
   };
 

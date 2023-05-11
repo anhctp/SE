@@ -1,21 +1,19 @@
 import modules from "../../styles/Lesson.module.css";
-
-import axios from "axios";
+import mode from "../../styles/flashcard.module.css";
 import React, { useState, useEffect } from "react";
 import client from "../../utils/client";
+<<<<<<< HEAD
+=======
+import { notification } from "antd";
+import router from "next/router";
+>>>>>>> 977da106c498ea1f8ec431795f08efc6929439f2
 
 export default function Card() {
-  const [flipped, setFlipped] = useState(false);
+  /* View flashcards */
+  const [flashcards, setFlashCards] = useState([]);
 
-  const handleClick = () => {
-    setFlipped(!flipped);
-  };
-
-  const [flashcards, setflashcards] = useState([]);
-  const [lessonTitle, setLessonTitle] = useState("");
-
-  // Lấy Bearer token từ header của request
   useEffect(() => {
+<<<<<<< HEAD
     const fetchData = async () => {
       const result = await client.get("flashcards")
       console.log(result)
@@ -27,13 +25,21 @@ export default function Card() {
       setflashcards(result.data);
       if (result.data.length > 0) {
         setLessonTitle(result.data[0].title); // Lấy title đầu tiên
+=======
+    const getFlashCards = async () => {
+      try {
+        const response = await client.get("flashcards");
+        setFlashCards(response[0]);
+      } catch (error) {
+        notification.error({ message: "Bạn chưa đăng nhập" });
+        router.push("../auth/login");
+>>>>>>> 977da106c498ea1f8ec431795f08efc6929439f2
       }
     };
-    fetchData();
+    getFlashCards();
   }, []);
 
   const [currentID, setCurrentID] = useState(0);
-
   function handlePreviousID() {
     if (currentID > 0) {
       setCurrentID(currentID - 1);
@@ -41,25 +47,24 @@ export default function Card() {
   }
 
   function handleNextID() {
-    if (currentID < flashcards.length - 1) {
+    if (currentID < flashcards.length - 1 && flashcards.length > 1) {
       setCurrentID(currentID + 1);
     }
   }
 
   return (
     <main>
-      <div
-        className={`${modules.flashcard} ${flipped ? modules.hover : ""}`}
-        onClick={handleClick}
-      >
-        <div className={modules.front}>
-          <p>This is the front of the card.</p>
+      {flashcards.length > 0 && (
+        <div className={mode.flashcard}>
+          <div className={mode.front}>
+            <p>{flashcards[currentID].front}</p>
+          </div>
+          <div className={mode.back}>
+            <p>{flashcards[currentID].back}</p>
+          </div>
         </div>
-        <div className={modules.back}>
-          <p>This is the back of the card.</p>
-        </div>
-      </div>
-
+      )}
+      
       <div>
         <button className={modules.button} onClick={handlePreviousID}>
           {"<"}

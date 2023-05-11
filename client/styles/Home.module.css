@@ -9,11 +9,9 @@
 
 /*slideBar*/
 .column1 {
-  font-family: "Feather";
   background-color: #ffffff;
   border-right: 1px inset #b7b7b7;
-  min-height: 100vh;
-  height: 100%;
+  height: 755px;
   text-align: center;
   justify-content: center;
   box-sizing: border-box;
@@ -22,7 +20,7 @@
 /*content*/
 .column2 {
   background-color: #ffffff;
-  height: 740px;
+  height: 750px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -31,22 +29,16 @@
 }
 
 /*button cua kanji, grammar, vocab, question*/
-/*button cua lesson,game,flashcard,account*/
+/*button cua lesson,flashcard,account*/
 .button1 {
   text-decoration: none; /*bỏ các kiểu như underline*/
   display: inline-block;
   background: #fff4cf;
-  mix-blend-mode: normal;
   border: 1px solid #000000;
   border-radius: 20px;
   width: 200px;
-  text-align: center;
-  justify-content: center;
   margin: auto;
   margin-bottom: 15px;
-}
-.button1 > div {
-  font-family: "Feather";
 }
 /* Định dạng phong cách cho khi nút được di chuột qua */
 .button1:hover {
@@ -60,41 +52,18 @@
   text-decoration: none; /*bỏ các kiểu như underline*/
   display: inline-block;
   background: #f6b51f;
-  mix-blend-mode: normal;
   border: 1px solid #000000;
   border-radius: 20px;
   width: 200px;
-  text-align: center;
-  justify-content: center;
   margin: auto;
   margin-bottom: 15px;
 }
-.activeButton1 > div {
-  font-family: "Feather";
-}
-/*button cua japper*/
-.button2 {
-  text-decoration: none; /*bỏ các kiểu như underline*/
-  display: inline-block;
-  mix-blend-mode: normal;
-  width: 200px;
-  text-align: center;
-  justify-content: center;
-  font-family: "Inter";
-  /*thu tu cac dong co anh huong den cach bai tri*/
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 100px;
-}
-.button2 > div {
-  font-family: "Feather";
-}
+
 /*button cua kanji, grammar, vocab*/
 .button3 {
   text-decoration: none; /*bỏ các kiểu như underline*/
   display: inline-flex;
   background: #ffffff;
-  mix-blend-mode: normal;
   border: 1px solid #000000;
   border-radius: 20px;
   width: 200px;
@@ -135,7 +104,6 @@
   display: inline-flex;
   box-sizing: border-box;
   background: #fff4cf;
-  mix-blend-mode: normal;
   border: 1px solid #000000;
   border-radius: 20px;
   width: 1050px;
@@ -153,7 +121,6 @@
   
   font-family: 'MyCustomFont1';
   text-align: center;
-  font-style: normal;
   font-weight: 600;
   font-size: 32px;
   display: inline-flex;
@@ -170,7 +137,6 @@
 
   font-family: 'MyCustomFont1';
   text-align: center;
-  font-style: normal;
   font-weight: 600;
   font-size: 32px;
   display: inline-flex;

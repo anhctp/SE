@@ -79,12 +79,11 @@ class ProgressController extends Controller
                 'score' => $progress->score,
             ]);
         } else {
-            // return false;
             return response()->json([
                 // 'lesson_id' => $id,
                 'question_id' => $question_id,
                 'user_answer' => $request->answer,
-                'answer' => $answer[0]->t_ans,
+                'answer' => $answer->t_ans,
                 // 'score' => $progress->score,
             ]);
         }
