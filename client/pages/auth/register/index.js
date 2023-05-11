@@ -41,6 +41,7 @@ const Login = () => {
     try {
       setLoading(true);
       const res = await AuthService.register(values);
+      console.log(res);
       token.set(res.token);
       router.push("/");
       notification.success({ message: "Register successfully!" });
@@ -85,7 +86,7 @@ const Login = () => {
               Sign Up To Get Started!
             </h2>
             <FormInput label="Full Name" name="name" />
-            <FormInput label="User Name" name="name" />
+            
             <FormInput label="Email" name="email" type="email" />
             <FormInput label="Password" name="password" type="password" />
             <FormInput

@@ -43,7 +43,7 @@ export default function Account() {
     try {
       await authSevice.logout();
       token.destroy();
-      router.push("/auth/login");
+      router.push("/");
     } catch (error) {}
   };
 
@@ -91,7 +91,7 @@ export default function Account() {
         getFlashCards();
         setProfile(res);
       } catch (error) {
-        notification.error({ message: error.response.data.message });
+        notification.error({ message: "Bạn chưa đăng nhập"});
         router.push("/auth/login");
       }
     };
