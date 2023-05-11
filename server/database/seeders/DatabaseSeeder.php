@@ -74,19 +74,30 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('questions')->insert([
-            ['lesson_id' => '1',
+            ['id' => 1,
+            'lesson_id' => '1',
             'question' => 'わたし means: ',
             't_ans' => 'I',
             'f_ans1' => 'you',
             'f_ans2' => 'teacher',
             'f_ans3' => 'student'],
 
-            ['lesson_id' => '1',
+            ['id' => 2,
+            'lesson_id' => '1',
             'question' => 'ミラーさんは　かいしゃいん　です。グプタさん___　かいしゃいん　です。',
             't_ans' => 'も',
             'f_ans1' => 'で',
             'f_ans2' => 'と',
             'f_ans3' => 'は'],
+
+            ['id' => 1,
+            'lesson_id' => '2',
+            'question' => '学生 means: ',
+            't_ans' => 'student',
+            'f_ans1' => 'you',
+            'f_ans2' => 'teacher',
+            'f_ans3' => 'I'],
+
         ]);
     }
 }
