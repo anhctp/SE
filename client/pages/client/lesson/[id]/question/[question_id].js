@@ -47,20 +47,19 @@ export default function Create() {
   const handleSubmit = async (ans) => {
     try {
       if (ans === trueAns) {
-      const result = await client.post(
-        `http://localhost:8000/api/lesson/${id}/question/${question_id}`,
-        { answer: ans }
-      );
-      // Update the score if the request was successful
-      
-        notification.success({ message: "Your score: " + result.score});
+        const result = await client.post(
+          `http://localhost:8000/api/lesson/${id}/question/${question_id}`,
+          { answer: ans }
+        );
+        // Update the score if the request was successful
+
+        notification.success({ message: "Your score: " + result.score });
       } else {
-        notification.error({ message: "The correct answer is: " + trueAns});
+        notification.error({ message: "The correct answer is: " + trueAns });
       }
     } catch (error) {
       notification.error({
-        message:
-          "Bạn chưa đăng nhập",
+        message: "Bạn chưa đăng nhập",
       });
       router.push("../../../../auth/login");
     }
@@ -100,12 +99,12 @@ export default function Create() {
             Lesson {id}: {questions.title}
           </div>
           <div className={modules.boxQuestion}>
-            <p>Question {question_id}: </p>
-            <h3 style={{ fontSize: "24px", paddingTop: "10px" }}>
+            <p className={modules.p}>Question {question_id}: </p>
+            <h3 style={{ fontSize: "32px", paddingTop: "10px" }}>
               {questions.question}
             </h3>
           </div>
-          <p className={modules.p}>Choose the correct answer:</p>
+          <p style={{paddingLeft:'100px'}} className={modules.p}>Choose the correct answer:</p>
           <div className={modules.boxMCQ}>
             <button
               className={
@@ -161,17 +160,19 @@ export default function Create() {
             </button>
           </div>
 
-          <div>
+          <span className={modules.ID_number}>
             <button className={modules.button} onClick={handlePreviousID}>
-              {"<"}
+              <div style={{ fontSize: "18px" }}>{"<"}</div>
             </button>
-            <span className="ID-number">
+
+            <div style={{ margin: "0 10px", fontSize: "18px" }}>
               {currentID + 1} / {parseInt(questions.question_num)}
-            </span>
+            </div>
+
             <button className={modules.button} onClick={handleNextID}>
-              {">"}
+              <div style={{ fontSize: "18px" }}>{">"}</div>
             </button>
-          </div>
+          </span>
         </div>
       </div>
     </main>
