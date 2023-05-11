@@ -47,18 +47,20 @@ export default function Card() {
           </div>
         </div>
       )}
-      
-      <div>
+
+      <span className={modules.ID_number}>
         <button className={modules.button} onClick={handlePreviousID}>
-          {"<"}
+          <div style={{ fontSize: "18px" }}>{"<"}</div>
         </button>
-        <span className="ID-number">
+
+        <div style={{ margin: "0 10px", fontSize: "18px" }}>
           {currentID + 1} / {flashcards.length}
-        </span>
+        </div>
+
         <button className={modules.button} onClick={handleNextID}>
-          {">"}
+          <div style={{ fontSize: "18px" }}>{">"}</div>
         </button>
-      </div>
+      </span>
     </main>
   );
 }

@@ -47,29 +47,33 @@ export default function Kanji() {
         <Sidebar />
 
         <div className={styles.column2}>
-          <div className={modules.box3}>
-            Lesson {id}: {lessonTitle}
-          </div>
-
-          <div className={modules.box4}>
-            <div className={modules.box5L}>{kanjis[currentID]?.kanji}</div>
-            <div className={modules.box5R}>
-              <p>Kun: {kanjis[currentID]?.kunyomi}</p>
-              <p>On: {kanjis[currentID]?.onyomi}</p>
-              <p>Word: {kanjis[currentID]?.word}</p>
+          <div style={{marginTop:'130px' }}>
+            <div className={modules.box3}>
+              Lesson {id}: {lessonTitle}
             </div>
-          </div>
 
-          <div>
-            <button className={modules.button} onClick={handlePreviousID}>
-              {"<"}
-            </button>
-            <span className="ID-number">
-              {currentID + 1} / {kanjis.length}
+            <div className={modules.box4}>
+              <div className={modules.box5L}>{kanjis[currentID]?.kanji}</div>
+              <div className={modules.box5R}>
+                <div>Kun: {kanjis[currentID]?.kunyomi}</div>
+                <div>On: {kanjis[currentID]?.onyomi}</div>
+                <div>Word: {kanjis[currentID]?.word}</div>
+              </div>
+            </div>
+
+            <span className={modules.ID_number}>
+              <button className={modules.button} onClick={handlePreviousID}>
+                <div style={{ fontSize: "18px" }}>{"<"}</div>
+              </button>
+
+              <div style={{ margin: "0 10px", fontSize: "18px" }}>
+                {currentID + 1} / {kanjis.length}
+              </div>
+
+              <button className={modules.button} onClick={handleNextID}>
+                <div style={{ fontSize: "18px" }}>{">"}</div>
+              </button>
             </span>
-            <button className={modules.button} onClick={handleNextID}>
-              {">"}
-            </button>
           </div>
         </div>
       </div>

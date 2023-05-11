@@ -2,8 +2,14 @@
 .flashcard {
   position: relative;
   width: 640px;
-  height: 400px;
+  height: 300px;
   perspective: 1000px; /* Tạo hiệu ứng 3D */
+  margin-left: 268px;
+  margin-right: auto;
+  margin-bottom: 70px;
+  margin-top: 30px;
+  font-family: "MyCustomFont";
+  font-size: 48px;
 }
 
 .flashcard .front,
@@ -18,9 +24,11 @@
   align-items: center;
   box-sizing: border-box;
   width: 620px;
-  height: 400px;
-  margin-left: 262px;
-
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+  margin-top: 30px;
   border: 1px solid #000000;
 }
 

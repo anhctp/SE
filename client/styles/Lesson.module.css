@@ -66,6 +66,7 @@
   border: 1px solid #000000;
   border-radius: 20px;
   font-family: "MyCustomFont1";
+  font-weight: 600;
   font-size: 36px;
 
   color: #000000;
@@ -131,47 +132,57 @@
 .box4 {
   display: flex;
   width: 620px;
-  height: 400px;
+  height: auto;
   margin-top: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
-
+  align-items: center;
   border: 1px solid #000000;
 }
 .box5L {
-  width: 310px;
-  height: 300px;
+  width: 280px;
+  height: auto;
   text-align: center;
 
   font-family: "MyCustomFont";
   margin-top: auto;
   margin-bottom: auto;
   font-weight: 400;
-  font-size: 200px;
+  font-size: 150px;
+  border-right: #000000 1px inset;
 }
 .box5R {
-  width: 310px;
-  height: 400px;
+  width: 340px;
+  height: auto;
   padding-left: 20px;
   text-align: left;
-  border-left: #000000 1px inset;
-
+  justify-content: center;
+  
   font-family: "MyCustomFont";
   font-weight: 400;
-  font-size: 24px;
+  font-size: 30px;
+}
+.ID_number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .button {
-  border-radius: 100%;
-  width: 25px;
-  height: 25px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
-  padding: 0 8px;
+  border-radius: 48%;
+  display: flex;
+  justify-items: center;
+  padding: 0 auto;
+  height: auto;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #ffffff;
   border: #000000 1px solid;
-  text-align: center;
 }
 .button:hover {
   background-color: #ffb200;
@@ -234,7 +245,6 @@
   font-weight: 600;
   font-size: 28px;
   text-align: left;
-  padding-left: 100px;
 }
 .boxQuestion {
   padding-top: 15px;
@@ -245,9 +255,10 @@
   margin-bottom: 30px;
   margin-right: auto;
   width: 980px;
-  height: 150px;
+  height: auto;
   border-radius: 30px;
   text-align: left;
+  padding-bottom: 10px;
 
   font-family: "MyCustomFont";
   font-weight: 600;
@@ -255,13 +266,14 @@
 }
 
 .buttonSubmit {
-  border: 1px solid rgba(255, 178, 0, 0.8);
+  border: 5px solid rgba(255, 178, 0, 0.8);
+  border-radius: 20px;
   margin-left: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   margin-right: auto;
   width: 120px;
-  height: 40px;
+  height: 45px;
   display: flex;
   text-align: center;
   align-items: center;
