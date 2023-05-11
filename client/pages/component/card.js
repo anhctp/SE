@@ -2,6 +2,7 @@ import modules from "../../styles/Lesson.module.css";
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import client from "../../utils/client";
 
 export default function Card() {
   const [flipped, setFlipped] = useState(false);
@@ -16,7 +17,8 @@ export default function Card() {
   // Lấy Bearer token từ header của request
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`http://localhost:8000/api/flashcards`);
+      const result = await client.get("flashcards")
+      console.log(result)
       /*, {
         headers: {
           Authorization: `Bearer ${yourBearerTokenHere}`, //cần thay yourBearertoken

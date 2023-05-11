@@ -61,17 +61,34 @@ const Login = () => {
       <div
         style={{
           position: "absolute",
-          right: "10%",
-          top: "10%",
+          right: "5%",
+          top: "4%",
           borderRadius: "50%",
-          width: "300px",
+          width: "600px",
           zIndex: -1,
         }}
       >
         <img
           style={{ borderRadius: "50%" }}
-          src="/image/345230497_556958093258722_2634146501096535841_n.jpg"
+          src="/image/vitvang1.jpg"
         ></img>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: "4%",
+          top: "25%",
+          borderRadius: "50%",
+          height:"700px",
+          width: "1000px",
+          zIndex: -1,
+        }}
+      >
+        <img
+          style={{ borderRadius: "50%" }}
+          src="/image/vitvang.jpg"
+        ></img>
+        
       </div>
       <div className="w-full">
         <FormProvider {...methods}>
