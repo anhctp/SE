@@ -15,7 +15,9 @@ import Sidebar from "./../../../../component/sidebar";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import cookie from "cookie";
+import client, { BASE_URL } from "../../../../../utils/client";
+import { notification } from "antd";
+import token from "../../../../../utils/token";
 
 export default function Create() {
   //GET
@@ -35,44 +37,32 @@ export default function Create() {
         );
         setQuestion(result.data);
         setScore(null); //sau POST
+        setTrueAns(result.data.t_ans);
       }
     };
     fetchQuestion();
   }, [id, question_id]);
 
   //post
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (ans) => {
     try {
-      // Make a request to retrieve the CSRF token
-      await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
-        withCredentials: true, // Send cookies in cross-origin requests
-      });
-
-      // Get the CSRF token from the cookie
-      const csrfToken = cookie.parse(document.cookie)["XSRF-TOKEN"];
-
-      // Set the X-XSRF-TOKEN header
-      axios.defaults.headers.common["X-XSRF-TOKEN"] = csrfToken;
-
-      // Make the POST request to submit the answer
-      const result = await axios.post(
+      if (ans === trueAns) {
+      const result = await client.post(
         `http://localhost:8000/api/lesson/${id}/question/${question_id}`,
-        {
-          answer: answer,
-        }
+        { answer: ans }
       );
-
       // Update the score if the request was successful
-      setScore(result.data.score);
-      setTrueAns(result.data.answer);
-    } catch (error) {
-      // Handle errors
-      if (error.response.status === 401 || error.response.status === 419) {
-        // Redirect the user to the login page
-        window.location.href = "../../../../auth/login";
+      
+        notification.success({ message: "Your score: " + result.score});
+      } else {
+        notification.error({ message: "The correct answer is: " + trueAns});
       }
+    } catch (error) {
+      notification.error({
+        message:
+          "Bạn chưa đăng nhập",
+      });
+      router.push("../../../../auth/login");
     }
   };
 
@@ -162,26 +152,14 @@ export default function Create() {
           </div>
 
           <div>
-            <button className={modules.buttonSubmit}
+            <button
+              className={modules.buttonSubmit}
               type="submit"
-              onClick={handleSubmit}
+              onClick={() => handleSubmit(answer)}
             >
               Submit
             </button>
           </div>
-          {score !== null && (
-            <div className={mt-3}>
-              {score === 1 ? (
-                <div className={modules.correct} role={alert}>
-                  Correct!
-                </div>
-              ) : (
-                <div className={modules.incorrect} role={alert}>
-                  Incorrect! The correct answer: {trueAns}
-                </div>
-              )}
-            </div>
-          )}
 
           <div>
             <button className={modules.button} onClick={handlePreviousID}>
