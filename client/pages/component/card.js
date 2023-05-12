@@ -35,6 +35,28 @@ export default function Card() {
     }
   }
 
+  //DELETE
+  const handleDelete = async () => {
+    try {
+      const response = await client.delete(
+        `http://localhost:8000/api/flashcard/${currentID + 1}`
+      );
+
+      if (response.success) {
+        setDeleted(true);
+        response[currentID] = null;
+        setFlashCards(response[currentID]);
+        // Reload the page after the update
+        window.location.reload();
+        notification.success({
+          message: "Delete",
+        });
+      }
+    } catch (error) {
+      notification.error({ message: error });
+    }
+  };
+
   return (
     <main>
       {flashcards.length > 0 && (
@@ -61,6 +83,10 @@ export default function Card() {
           <div style={{ fontSize: "18px" }}>{">"}</div>
         </button>
       </span>
+
+      <button className={modules.buttonSubmit} onClick={handleDelete}>
+        Delete
+      </button>
     </main>
   );
 }
