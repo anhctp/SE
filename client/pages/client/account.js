@@ -149,12 +149,12 @@ export default function Account() {
                             }}
                           >
                           <Row>
-                            <Typography.Title level={2} style={{ margin: 0 }}>
-                              {profile.name}
-                            </Typography.Title>
-                            level={1}
+                          <Typography.Title
+                                level={1}
                                 style={{ margin: 0, fontSize: "48px" }}
                               >
+                                {profile.name}
+                              </Typography.Title>
                           </Row>
 
                           <Row
@@ -162,7 +162,7 @@ export default function Account() {
                             justify="start"
                             style={{ marginTop: "6px" }}
                           >
-                            <Col span={6}>
+                          
                               <Typography.Text
                                  style={{
                                   fontSize: "32px",
