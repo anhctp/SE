@@ -25,7 +25,7 @@ import {
         try {
           await client.post("flashcards", card);
           notification.success({
-            message: "Added card with word" + card.front + "!",
+            message: "Added card with word " + card.front + "!",
           });
           setIsModalOpen(false);
         } catch (error) {
