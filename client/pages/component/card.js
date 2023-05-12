@@ -36,26 +36,28 @@ export default function Card() {
   }
 
   //DELETE
+  const [deleted, setDeleted] = useState(false);
+
   const handleDelete = async () => {
     try {
-      const response = await client.delete(
-        `http://localhost:8000/api/flashcard/${currentID + 1}`
+      await client.delete(
+        `http://localhost:8000/api/flashcard/${flashcards[currentID].id}`,
       );
 
-      if (response.success) {
         setDeleted(true);
-        response[currentID] = null;
-        setFlashCards(response[currentID]);
-        // Reload the page after the update
+
         window.location.reload();
         notification.success({
           message: "Delete",
         });
-      }
     } catch (error) {
       notification.error({ message: error });
     }
   };
+
+  if (deleted) {
+    return null;
+  }
 
   return (
     <main>

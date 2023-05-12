@@ -63,6 +63,7 @@ export default function Account() {
       try {
         await authSevice.update(values);
         setIsModalOpen(false);
+        window.location.reload();
         notification.success({
           message: "Bạn đã cập nhật tài khoản thành công",
         });
@@ -224,7 +225,7 @@ export default function Account() {
               </Row>
             </Divider>
             <Row
-              style={{ height: "400px", overflowY: "auto" }}
+              style={{ height: "200px", overflowY: 'scroll' }}
               justify="center"
             >
               

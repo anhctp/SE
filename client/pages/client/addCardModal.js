@@ -24,6 +24,7 @@ import {
       for (const card of cards) {
         try {
           await client.post("flashcards", card);
+          window.location.reload();
           notification.success({
             message: "Added card with word" + card.front + "!",
           });
