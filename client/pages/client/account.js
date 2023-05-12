@@ -26,11 +26,11 @@ import { useFormik } from "formik";
 import client from "../../utils/client";
 import dayjs from "dayjs";
 import { token } from "../../utils/token";
-
+import lessonService from "../../services/lesson.service";
 export default function Account() {
   const router = useRouter();
   const [profile, setProfile] = useState(null);
-
+  const [lessons, setLessons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [flashCards, setFlashCards] = useState([]);
@@ -74,6 +74,12 @@ export default function Account() {
   });
 
   useEffect(() => {
+    lessonService.getAll().then((res) => {
+      setLessons(res);
+    });
+  }, []);
+
+  useEffect(() => {
     const getFlashCards = async () => {
       try {
         const response = await client.get("flashcards");
@@ -92,6 +98,7 @@ export default function Account() {
         setProfile(res);
       } catch (error) {
         notification.error({ message: "Bạn chưa đăng nhập"});
+        setLoading(false);
         router.push("/auth/login");
       }
     };
@@ -133,10 +140,21 @@ export default function Account() {
                           </div>
                         </Col>
                         <Col span={8}>
+                        <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              flexDirection: "column",
+                              height: "100%",
+                            }}
+                          >
                           <Row>
-                            <Typography.Title level={2} style={{ margin: 0 }}>
-                              {profile.name}
-                            </Typography.Title>
+                          <Typography.Title
+                                level={1}
+                                style={{ margin: 0, fontSize: "48px" }}
+                              >
+                                {profile.name}
+                              </Typography.Title>
                           </Row>
 
                           <Row
@@ -144,19 +162,23 @@ export default function Account() {
                             justify="start"
                             style={{ marginTop: "6px" }}
                           >
-                            <Col span={6}>
+                          
                               <Typography.Text
-                                style={{ fontSize: 20, textAlign: "start" }}
+                                 style={{
+                                  fontSize: "32px",
+                                  textAlign: "start",
+                                  marginRight: "10px",
+                                }}
                                 strong
                                 italic
                               >
                                 Email
                               </Typography.Text>
-                            </Col>
-                            <Col span={10}>
-                              <Typography.Text>{profile.email}</Typography.Text>
-                            </Col>
+                              <Typography.Text style={{ fontSize: "20px" }}>
+                                {profile.email}
+                              </Typography.Text>
                           </Row>
+                          </div>
                         </Col>
                         <Col span={6}>
                           <Row justify="center">
@@ -201,20 +223,11 @@ export default function Account() {
                 <Typography.Title level={2}>Flash Card</Typography.Title>{" "}
               </Row>
             </Divider>
-            <Row justify="center">
-              <Col span={24}>
-                <Row justify="end">
-                  <Col span={8}>
-                    <Button
-                      style={{ width: "100%" }}
-                      type="default"
-                      icon={<SearchOutlined />}
-                    >
-                      Search
-                    </Button>
-                  </Col>
-                </Row>
-              </Col>
+            <Row
+              style={{ height: "400px", overflowY: "auto" }}
+              justify="center"
+            >
+              
               <Col span={18}>
                 <Skeleton loading={loading} avatar active></Skeleton>
                 {!loading &&
@@ -227,6 +240,7 @@ export default function Account() {
                         borderRadius: "10px",
                         backgroundColor: "lightgray",
                       }}
+                      key={card.id}
                     >
                       <div style={{ padding: "12px 8px" }}>
                         <h4>{card.front}</h4>
@@ -256,14 +270,11 @@ export default function Account() {
                   <Skeleton loading={loading} avatar active></Skeleton>
                   {!loading && (
                     <Card>
-                      <Card.Grid style={gridStyle}>Lesson 1</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 2</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 3</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 4</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 5</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 6</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 7</Card.Grid>
-                      <Card.Grid style={gridStyle}>Lesson 8</Card.Grid>
+                       {lessons.map((lesson) => (
+                        <Card.Grid style={gridStyle} key={lesson.id}>
+                          {lesson.title}
+                        </Card.Grid>
+                      ))}
                     </Card>
                   )}
                 </Card>

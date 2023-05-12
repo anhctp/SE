@@ -1,3 +1,4 @@
+import { DeleteFilled, PlusCircleFilled } from "@ant-design/icons";
 import {
     Button,
     Card,
@@ -6,22 +7,17 @@ import {
     Input,
     Modal,
     Row,
+    Space,
     Typography,
     notification,
   } from "antd";
-  import { useEffect, useRef, useState } from "react";
-  import {
-    PlusCircleFilled,
-    EditFilled,
-    DeleteFilled,
-    StopOutlined,
-    SaveOutlined,
-  } from "@ant-design/icons";
+
   import { motion } from "framer-motion";
+  import { useRef, useState } from "react";
   import client from "../../utils/client";
   export default function AddCardModal({ isModalOpen, setIsModalOpen }) {
     const [cards, setCards] = useState([]);
-    const [editIndex, setEditIndex] = useState(-1);
+    
     const originalValue = useRef({ front: "", back: "" });
   
     const saveAllCard = async () => {
@@ -49,19 +45,7 @@ import {
       const newCardList = [...cards];
       setCards(newCardList.filter((e) => e.id !== index));
     };
-    const edit = (index) => {
-      if (index != -1) save();
-      setEditIndex(index);
-      const editingCard = cards[index];
-      console.log(editingCard);
-      originalValue.current = {
-        ...editingCard,
-      };
-    };
-    const save = () => {
-      setEditIndex(-1);
-      originalValue.current = {};
-    };
+    
     return (
       <Modal
         width={1000}
@@ -71,7 +55,7 @@ import {
         onCancel={() => setIsModalOpen(false)}
       >
         <div style={{ padding: "24px" }}>
-          <Row style={{ maxHeight: "405px", overflowY: "auto" }}>
+        <Row style={{ maxHeight: "405px", overflowY: "auto" }} gutter={10}>
             {cards.map((card, index) => (
               <Col key={card.id} span={12}>
                 <motion.div
@@ -88,33 +72,17 @@ import {
                   <Card
                     title={
                       <Row justify="space-between" align="middle">
-                        <Col span={10}>
+                       
                           <Typography.Title level={3}>
                             {`Flash Card #${index + 1}`}
                           </Typography.Title>
-                        </Col>
-                        <Col span={14}>
-                          {editIndex === card?.id ? (
-                            <>
+                        
                               <Button
-                                onClick={save}
-                                type="dashed"
-                                icon={<SaveOutlined />}
-                              >
-                                Save
-                              </Button>
-                            </>
-                          ) : (
-                            <Button
-                              onClick={() => edit(card.id)}
-                              icon={<EditFilled />}
-                            ></Button>
-                          )}
-                          <Button
+                                
                             onClick={() => removeCard(card.id)}
                             icon={<DeleteFilled />}
                           ></Button>
-                        </Col>
+                      
                       </Row>
                     }
                   >
@@ -129,15 +97,19 @@ import {
                       autoComplete="off"
                       layout="vertical"
                     >
+                        <Space>
                       <Form.Item
                         label="Word"
                         name="word"
                         rules={[
-                          { required: true, message: "Please input your Word!" },
+                          {
+                            required: true,
+                            message: "Please input your Word!",
+                          },
                         ]}
                       >
                         <Input
-                          disabled={editIndex != card.id}
+                          
                           defaultValue={card?.front || ""}
                           value={
                             cards.find((e) => e?.id === card.id)?.front || ""
@@ -164,9 +136,11 @@ import {
                         ]}
                       >
                         <Input
-                          disabled={editIndex != card.id}
+                          
                           defaultValue={card?.back || ""}
-                          value={cards.find((e) => e?.id === card.id)?.back || ""}
+                          value={
+                            cards.find((e) => e?.id === card.id)?.back || ""
+                          }
                           onChange={(e) => {
                             setCards(
                               cards.map((loopCard) => {
@@ -178,6 +152,7 @@ import {
                           }}
                         />
                       </Form.Item>
+                      </Space>
                     </Form>
                   </Card>
                 </motion.div>

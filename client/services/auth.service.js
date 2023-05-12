@@ -1,6 +1,6 @@
 import axios from "axios";
 import client, { BASE_URL } from "../utils/client";
-import Cookies from "js-cookie";
+
 
 class AuthService {
   static async login(payload) {
