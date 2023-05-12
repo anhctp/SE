@@ -2,30 +2,14 @@ import modules from "../../styles/Lesson.module.css";
 import mode from "../../styles/flashcard.module.css";
 import React, { useState, useEffect } from "react";
 import client from "../../utils/client";
-<<<<<<< HEAD
-=======
 import { notification } from "antd";
 import router from "next/router";
->>>>>>> 977da106c498ea1f8ec431795f08efc6929439f2
 
 export default function Card() {
   /* View flashcards */
   const [flashcards, setFlashCards] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
-    const fetchData = async () => {
-      const result = await client.get("flashcards")
-      console.log(result)
-      /*, {
-        headers: {
-          Authorization: `Bearer ${yourBearerTokenHere}`, //cần thay yourBearertoken
-        },}
-      */
-      setflashcards(result.data);
-      if (result.data.length > 0) {
-        setLessonTitle(result.data[0].title); // Lấy title đầu tiên
-=======
     const getFlashCards = async () => {
       try {
         const response = await client.get("flashcards");
@@ -33,7 +17,6 @@ export default function Card() {
       } catch (error) {
         notification.error({ message: "Bạn chưa đăng nhập" });
         router.push("../auth/login");
->>>>>>> 977da106c498ea1f8ec431795f08efc6929439f2
       }
     };
     getFlashCards();
@@ -50,6 +33,30 @@ export default function Card() {
     if (currentID < flashcards.length - 1 && flashcards.length > 1) {
       setCurrentID(currentID + 1);
     }
+  }
+
+  //DELETE
+  const [deleted, setDeleted] = useState(false);
+
+  const handleDelete = async () => {
+    try {
+      await client.delete(
+        `http://localhost:8000/api/flashcard/${flashcards[currentID].id}`,
+      );
+
+        setDeleted(true);
+
+        window.location.reload();
+        notification.success({
+          message: "Delete",
+        });
+    } catch (error) {
+      notification.error({ message: error });
+    }
+  };
+
+  if (deleted) {
+    return null;
   }
 
   return (
@@ -78,6 +85,10 @@ export default function Card() {
           <div style={{ fontSize: "18px" }}>{">"}</div>
         </button>
       </span>
+
+      <button className={modules.buttonSubmit} onClick={handleDelete}>
+        Delete
+      </button>
     </main>
   );
 }

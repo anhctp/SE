@@ -34,6 +34,7 @@ export default function Account() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [flashCards, setFlashCards] = useState([]);
+  const [completedLesson, setCompletedLesson] = useState(0)
   const gridStyle = {
     width: "25%",
     textAlign: "center",
@@ -63,6 +64,7 @@ export default function Account() {
       try {
         await authSevice.update(values);
         setIsModalOpen(false);
+        window.location.reload();
         notification.success({
           message: "Bạn đã cập nhật tài khoản thành công",
         });
@@ -75,9 +77,9 @@ export default function Account() {
 
   useEffect(() => {
     lessonService.getAll().then((res) => {
-      setLessons(res);
+      setLessons(res.filter((e) => e.id == completedLesson));
     });
-  }, []);
+  }, [completedLesson]);
 
   useEffect(() => {
     const getFlashCards = async () => {
@@ -95,6 +97,7 @@ export default function Account() {
       try {
         const res = await authSevice.auth();
         getFlashCards();
+        setCompletedLesson(res.completed_lesson)
         setProfile(res);
       } catch (error) {
         notification.error({ message: "Bạn chưa đăng nhập"});
@@ -224,7 +227,7 @@ export default function Account() {
               </Row>
             </Divider>
             <Row
-              style={{ height: "400px", overflowY: "auto" }}
+              style={{ height: "100px", overflowY: 'auto' }}
               justify="center"
             >
               
@@ -270,6 +273,7 @@ export default function Account() {
                   <Skeleton loading={loading} avatar active></Skeleton>
                   {!loading && (
                     <Card>
+                      {lessons.length == 0 && <Typography>You haven't learned any lesson yet.</Typography>}
                        {lessons.map((lesson) => (
                         <Card.Grid style={gridStyle} key={lesson.id}>
                           {lesson.title}

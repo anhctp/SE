@@ -7,20 +7,10 @@
   justify-content: center;
 }
 
-/*slideBar*/
-.column1 {
-  background-color: #ffffff;
-  border-right: 1px inset #b7b7b7;
-  height: 755px;
-  text-align: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
 /*content*/
 .column2 {
   background-color: #ffffff;
-  height: 750px;
+  height: 760px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -71,8 +61,8 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 40px;
+  margin-left: 40px;
 
   font-family: 'MyCustomFont1';
   font-style: normal;
@@ -88,7 +78,7 @@
 /*box cua lesson*/
 .box1 {
   display: inline-flexbox;
-  width: 1140px;
+  width: auto;
   height: 290px;
   box-sizing: border-box;
   border-top: 1px solid #878686;
@@ -101,29 +91,31 @@
 }
 
 .box2 {
-  display: inline-flex;
+  display: flexbox;
   box-sizing: border-box;
   background: #fff4cf;
   border: 1px solid #000000;
   border-radius: 20px;
-  width: 1050px;
-  height: 130px;
-  margin:40px auto 30px;
+  width: auto;
+  height: 140px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
+  justify-content: center;
+  align-items: center;
 }
 
 /*box cua so bai hoc*/
 .box3 {
-  width: 300px;
+  width: 180px;
   height: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
-  margin-right: -100px;
-  
   font-family: 'MyCustomFont1';
-  text-align: center;
+  text-align: left;
   font-weight: 600;
   font-size: 32px;
-  display: inline-flex;
   align-items: center;
   color: #323030;
 }
@@ -132,16 +124,16 @@
 .box4 {
   width: 800px;
   height: 70px;
-  margin-top: 50px;
-  margin-left: -100px;
-
+  
   font-family: 'MyCustomFont1';
   text-align: center;
-  font-weight: 600;
-  font-size: 32px;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
+  font-size: 38px;
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
   color: #323030;
 }
 
