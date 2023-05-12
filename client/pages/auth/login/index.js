@@ -63,31 +63,26 @@ const Login = () => {
       <div
         style={{
           position: "absolute",
-          right: "5%",
+          right: "2%",
           top: "4%",
           borderRadius: "50%",
-          width: "600px",
           zIndex: -1,
         }}
       >
         <img
-          style={{ borderRadius: "50%" }}
           src="/image/vitvang1.jpg"
         ></img>
       </div>
       <div
         style={{
           position: "absolute",
-          left: "4%",
+          left: "-2%",
           top: "25%",
           borderRadius: "50%",
-          height:"700px",
-          width: "1000px",
           zIndex: -1,
         }}
       >
         <img
-          style={{ borderRadius: "50%" }}
           src="/image/vitvang.jpg"
         ></img>
         
