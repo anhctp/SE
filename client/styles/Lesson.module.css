@@ -9,10 +9,10 @@
 
 /*content cua grammar*/
 .box1 {
-  width: 1050px;
+  width: auto;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 80px;
+  margin-right: 80px;
   margin-top: 30px;
   margin-bottom: 30px;
   background: #fffdf3;
@@ -55,8 +55,8 @@
   box-sizing: border-box;
   width: 600px;
   height: 70px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -79,8 +79,8 @@
   border-spacing: 2px;
   width: 1050px;
 
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "MyCustomFont1";
   font-size: 20px;
   line-height: 24px;
@@ -133,8 +133,8 @@
   display: flex;
   width: 620px;
   height: auto;
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-top: 70px;
+  margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
@@ -163,6 +163,8 @@
   font-weight: 400;
   font-size: 30px;
 }
+
+/* dieu huong trang */
 .ID_number {
   display: flex;
   justify-content: center;
@@ -191,12 +193,12 @@
 /*questions*/
 .boxMCQ {
   display: flex;
-  width: 1000px;
+  width: auto;
   height: 80px;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .boxAnswer {
@@ -243,18 +245,19 @@
 .p {
   font-family: "MyCustomFont";
   font-weight: 600;
-  font-size: 28px;
+  font-size: 26px;
   text-align: left;
 }
 .boxQuestion {
   padding-top: 15px;
   padding-left: 20px;
+  padding-right: 20px;
   border: 1px solid rgba(255, 178, 0, 0.8);
-  margin-left: auto;
+  margin-left: 80px;
   margin-top: 30px;
   margin-bottom: 30px;
-  margin-right: auto;
-  width: 980px;
+  margin-right: 80px;
+  width: auto;
   height: auto;
   border-radius: 30px;
   text-align: left;
@@ -266,11 +269,11 @@
 }
 
 .buttonSubmit {
-  border: 5px solid rgba(255, 178, 0, 0.8);
+  background-color: rgba(255, 178, 0, 0.8);
   border-radius: 20px;
   margin-left: auto;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   margin-right: auto;
   width: 120px;
   height: 45px;
@@ -284,5 +287,5 @@
   font-size: 24px;
 }
 .buttonSubmit:hover {
-  background-color: rgba(255, 178, 0, 0.8);
+  background-color: #ff8800;
 }

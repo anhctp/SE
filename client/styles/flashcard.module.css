@@ -4,7 +4,7 @@
   width: 640px;
   height: 300px;
   perspective: 1000px; /* Tạo hiệu ứng 3D */
-  margin-left: 268px;
+  margin-left: auto;
   margin-right: auto;
   margin-bottom: 70px;
   margin-top: 30px;
