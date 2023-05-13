@@ -31,7 +31,7 @@ export default function Card() {
   }
 
   function handleNextID() {
-    if (currentID < flashcards.length && flashcards.length > 1) {
+    if (currentID < flashcards.length && flashcards.length > 0) {
       setCurrentID(currentID + 1);
     }
   }
@@ -47,7 +47,7 @@ export default function Card() {
       setDeleted(true);
       window.location.reload();
       notification.success({
-        message: "Delete",
+        message: "Deleted",
       });
     } catch (error) {
       notification.error({ message: error });
@@ -113,7 +113,7 @@ export default function Card() {
           setIsModalOpen={setIsModalOpen}
         ></AddCardModal>
 
-        <span className={modules.ID_number} style={{width:'206px'}}>
+        <span className={modules.ID_number} style={{ width: "206px" }}>
           <button className={modules.button} onClick={handlePreviousID}>
             <div style={{ fontSize: "18px" }}>{"<"}</div>
           </button>
@@ -131,7 +131,6 @@ export default function Card() {
   } else {
     return (
       <main>
-        {flashcards.length > 0 && (
           <div className={mode.flashcard}>
             <div className={mode.front}>
               <p>{flashcards[currentID].front}</p>
@@ -140,7 +139,6 @@ export default function Card() {
               <p>{flashcards[currentID].back}</p>
             </div>
           </div>
-        )}
 
         <AddCardModal
           isModalOpen={isModalOpen}
@@ -168,6 +166,7 @@ export default function Card() {
             Edit
           </button>
         </span>
+
         {isEditing && (
           <div>
             <input
@@ -182,7 +181,7 @@ export default function Card() {
               value={back}
               onChange={(e) => setBack(e.target.value)}
             />
-            <div style={{ display: "flex", width: "300px", margin: "auto" }}>
+            <div style={{ display: "flex", width: "300px", margin: "auto", marginBottom:'-50px' }}>
               <button className={modules.buttonSubmit} onClick={handleSave}>
                 Save
               </button>
@@ -195,6 +194,13 @@ export default function Card() {
             </div>
           </div>
         )}
+
+        <button
+          className={modules.buttonSubmit} style={{marginTop:'40px'}}
+          onClick={() => setIsModalOpen(true)}
+        >
+          {"+"}
+        </button>
       </main>
     );
   }

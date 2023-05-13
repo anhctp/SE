@@ -12,7 +12,7 @@ import Link from "next/link";
 import Sidebar from "../component/sidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { token } from "../../utils/token";
+import Head from 'next/head';
 
 export default function Lesson() {
   /* useState để lưu trữ các bài học */
@@ -29,6 +29,9 @@ export default function Lesson() {
 
   return (
     <main>
+      <Head>
+        <title>Japper</title>
+      </Head>
       <div className={styles.containerCol}>
         <Sidebar />
 

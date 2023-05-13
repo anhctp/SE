@@ -53,7 +53,9 @@
 /*box cua phan tieu de cua bai hoc*/
 .box3 {
   box-sizing: border-box;
-  width: 600px;
+  width: max-content;
+  padding-left: 40px;
+  padding-right: 40px;
   height: 70px;
   margin-top: 40px;
   margin-bottom: 50px;

@@ -17,7 +17,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import client, { BASE_URL } from "../../../../../utils/client";
 import { notification } from "antd";
-import token from "../../../../../utils/token";
+import Head from "next/head";
 
 export default function Create() {
   //GET
@@ -25,7 +25,7 @@ export default function Create() {
   const { id, question_id } = router.query;
   const [questions, setQuestion] = useState({});
   const [answer, setAnswer] = useState("");
-  const [score, setScore] = useState(null);
+  const [score, setScore] = useState(1);
   const [trueAns, setTrueAns] = useState("");
 
   //GET
@@ -36,7 +36,6 @@ export default function Create() {
           `http://localhost:8000/api/lesson/${id}/question/${question_id}`
         );
         setQuestion(result.data);
-        setScore(null); //sau POST
         setTrueAns(result.data.t_ans);
       }
     };
@@ -47,23 +46,26 @@ export default function Create() {
   const handleSubmit = async (ans) => {
     try {
       if (ans === trueAns) {
+        setScore(score + 1);
         const result = await client.post(
           `http://localhost:8000/api/lesson/${id}/question/${question_id}`,
           { answer: ans }
         );
-        // Update the score if the request was successful
+        notification.success({ message: "Your score: " + score });
 
-        notification.success({ message: "Your score: " + result.score });
-        
-        
         if (parseInt(question_id) < parseInt(questions.question_num)) {
-            router.push(
-              `../../../lesson/${id}/question/${parseInt(question_id) + 1}`
-            );
-            setCurrentID(currentID + 1);
-          }
+          router.push(
+            `../../../lesson/${id}/question/${parseInt(question_id) + 1}`
+          );
+          setCurrentID(currentID + 1);
+        }
       } else if (answer.length > 0) {
         notification.error({ message: "The correct answer is: " + trueAns });
+      }
+
+      if (score === parseInt(questions.question_num)) {
+        router.push(`/`);
+        notification.success({message: "Lesson " + id + " is done"})
       }
     } catch (error) {
       notification.error({
@@ -99,6 +101,9 @@ export default function Create() {
 
   return (
     <main>
+      <Head>
+        <title>Japper</title>
+      </Head>
       <div className={styles.containerCol}>
         <Sidebar />
 
@@ -112,7 +117,9 @@ export default function Create() {
               {questions.question}
             </h3>
           </div>
-          <p style={{paddingLeft:'100px'}} className={modules.p}>Choose the correct answer:</p>
+          <p style={{ paddingLeft: "100px" }} className={modules.p}>
+            Choose the correct answer:
+          </p>
           <div className={modules.boxMCQ}>
             <button
               className={
@@ -157,7 +164,7 @@ export default function Create() {
               D: {questions.f_ans3}
             </button>
           </div>
-          
+
           <div>
             <button
               className={modules.buttonSubmit}
