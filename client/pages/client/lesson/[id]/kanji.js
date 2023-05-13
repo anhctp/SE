@@ -1,7 +1,7 @@
 import styles from "../../../../styles/Home.module.css";
 import modules from "../../../../styles/Lesson.module.css";
 import Sidebar from "../../../component/sidebar";
-
+import Head from 'next/head';
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -43,6 +43,9 @@ export default function Kanji() {
 
   return (
     <main>
+      <Head>
+        <title>Japper</title>
+      </Head>
       <div className={styles.containerCol}>
         <Sidebar />
 

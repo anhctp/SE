@@ -1,0 +1,42 @@
+/*font*/
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("../public/avenir_ff/AvenirLTStd-Black.otf") format("truetype");
+
+  font-family: "MyCustomFont1";
+  src: url("../public/avenir_ff/AvenirLTStd-Roman.otf") format("truetype");
+}
+
+.table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  width: 1050px;
+
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "MyCustomFont1";
+  font-size: 20px;
+  line-height: 24px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+.th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: 600;
+  font-size: 28px;
+  height: 50px;
+  background: rgb(255, 242, 211);
+  border: 1px solid #000000;
+}
+.td {
+  display: table-cell;
+  vertical-align: inherit;
+  height: 40px;
+  border: 1px solid #000000;
+}
+

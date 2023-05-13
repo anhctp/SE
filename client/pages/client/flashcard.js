@@ -1,16 +1,15 @@
 import styles from "../../styles/Home.module.css";
 import modules from "../../styles/Lesson.module.css";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import Sidebar from "../component/sidebar";
 import Card from "../component/card";
-import { useState } from "react";
+import Head from 'next/head';
 
 export default function Flashcard() {
-  const router = useRouter();
-
   return (
     <main>
+      <Head>
+        <title>Japper</title>
+      </Head>
       <div className={styles.containerCol}>
         <Sidebar />
 
