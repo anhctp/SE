@@ -15,6 +15,7 @@ import {
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import client from "../../utils/client";
+import router from "next/router";
 export default function AddCardModal({ isModalOpen, setIsModalOpen }) {
   const [cards, setCards] = useState([]);
 
@@ -30,7 +31,7 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen }) {
         notification.error({ message: "Error! Try again!" });
       }
     }
-    window.location.reload();
+    router.reload();
   };
 
   const removeCard = (index) => {
