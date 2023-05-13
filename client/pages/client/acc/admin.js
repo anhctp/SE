@@ -23,7 +23,6 @@ import validator from "validator";
 import client from "../../../utils/client";
 import { token } from "../../../utils/token";
 import modules from "../../../styles/admin.module.css";
-import module from "../../../styles/Lesson.module.css";
 
 export default function AdminAccount() {
   const router = useRouter();
@@ -57,14 +56,14 @@ export default function AdminAccount() {
           await authSevice.update(values);
           setIsModalOpen(false);
           notification.success({
-            message: "Bạn đã cập nhật tài khoản thành công",
+            message: "Updated successfully",
           });
           setProfile(values);
         } catch (error) {
-          notification.error({ message: "Bạn chưa nhập đủ thông tin" });
+          notification.error({ message: "You need to text more information!" });
         }
       } else {
-        notification.error({ message: "Email chưa chính xác" });
+        notification.error({ message: "Email is invalid" });
       }
     },
   });
@@ -91,7 +90,7 @@ export default function AdminAccount() {
         getAccounts();
         setProfile(res);
       } catch (error) {
-        notification.error({ message: "Bạn chưa đăng nhập" });
+        notification.error({ message: "You need to login!" });
         setLoading(false);
         router.push("/auth/login");
       }
@@ -104,9 +103,7 @@ export default function AdminAccount() {
 
   const handleDelete = async (id) => {
     try {
-      await client.delete(`http://localhost:8000/api/admin/account/${id}`, {
-        id,
-      });
+      await client.delete(`http://localhost:8000/api/admin/account/${id}`);
       setDeleted(true);
       window.location.reload();
       notification.success({
@@ -285,7 +282,6 @@ export default function AdminAccount() {
           <table className={modules.table}>
             <tbody>
               <tr>
-                <td className={modules.th}>STT</td>
                 <td className={modules.th}>Full name</td>
                 <td className={modules.th}>Email</td>
                 <td className={modules.th}>Role</td>
@@ -295,7 +291,6 @@ export default function AdminAccount() {
 
               {table.map((tables) => (
                 <tr key={tables.id}>
-                  <td className={modules.td}>{tables.id}</td>
                   <td className={modules.td}>{tables.name}</td>
                   <td className={modules.td}>{tables.email}</td>
                   <td className={modules.td}>{tables.role}</td>
@@ -313,9 +308,7 @@ export default function AdminAccount() {
                       </button>
                     </td>
                   )}
-                  {tables.role === 1 && (
-                    <td className={modules.td}></td>
-                  )}
+                  {tables.role === 1 && <td className={modules.td}></td>}
                 </tr>
               ))}
             </tbody>

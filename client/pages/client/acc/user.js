@@ -329,14 +329,14 @@ export default function UserAccount() {
                     width: "100%",
                     marginLeft: "auto",
                     marginRight: "auto",
-                    height: "400px",
+                    height: "400px",textAlign:'left'
                   }}
                 >
                   <Col
-                    span={19}
+                    span={18}
                     style={{
                       fontSize: "24px",
-                      paddingLeft: "40px",
+                      paddingLeft: "80px",
                     }}
                   >
                     <div>
