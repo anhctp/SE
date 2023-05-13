@@ -40,7 +40,7 @@ export default function Sidebar() {
       <Link
         href="/client/account"
         className={
-          router.pathname === "/client/account"
+          router.pathname === "/client/acc/user" || router.pathname ==="/client/acc/admin"
             ? styles.activeButton1
             : styles.button1
         }
