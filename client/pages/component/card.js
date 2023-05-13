@@ -31,7 +31,7 @@ export default function Card() {
   }
 
   function handleNextID() {
-    if (currentID < flashcards.length && flashcards.length > 0) {
+    if (currentID < flashcards.length-1 && flashcards.length > 0) {
       setCurrentID(currentID + 1);
     }
   }
@@ -74,22 +74,27 @@ export default function Card() {
 
   const handleSave = async () => {
     setIsEditing(false);
-    try {
-      const response = await client.put(
-        `http://localhost:8000/api/flashcard/${flashcards[currentID].id}`,
-        {
-          front,
-          back,
-        }
-      );
-      window.location.reload();
-      notification.success({ message: "Updated" });
-    } catch (error) {
-      notification.error({ message: error });
+    if (front != "" && back != "") {
+      try {
+        const response = await client.put(
+          `http://localhost:8000/api/flashcard/${flashcards[currentID].id}`,
+          {
+            front,
+            back,
+          }
+        );
+        window.location.reload();
+        notification.success({ message: "Updated" });
+      } catch (error) {
+        notification.error({ message: error });
+      }
+    } else {
+      setIsEditing(true);
+      notification.error({ message: "You must text both front and back" });
     }
   };
 
-  if (flashcards.length === 0 || currentID + 1 > flashcards.length) {
+  if (flashcards.length === 0) {
     return (
       <main>
         <div
@@ -131,14 +136,14 @@ export default function Card() {
   } else {
     return (
       <main>
-          <div className={mode.flashcard}>
-            <div className={mode.front}>
-              <p>{flashcards[currentID].front}</p>
-            </div>
-            <div className={mode.back}>
-              <p>{flashcards[currentID].back}</p>
-            </div>
+        <div className={mode.flashcard}>
+          <div className={mode.front}>
+            <p>{flashcards[currentID].front}</p>
           </div>
+          <div className={mode.back}>
+            <p>{flashcards[currentID].back}</p>
+          </div>
+        </div>
 
         <AddCardModal
           isModalOpen={isModalOpen}
@@ -155,7 +160,7 @@ export default function Card() {
           </button>
 
           <div style={{ margin: "0 10px", fontSize: "18px" }}>
-            {currentID + 1} / {flashcards.length + 1}
+            {currentID + 1} / {flashcards.length}
           </div>
 
           <button className={modules.button} onClick={handleNextID}>
@@ -181,7 +186,14 @@ export default function Card() {
               value={back}
               onChange={(e) => setBack(e.target.value)}
             />
-            <div style={{ display: "flex", width: "300px", margin: "auto", marginBottom:'-50px' }}>
+            <div
+              style={{
+                display: "flex",
+                width: "300px",
+                margin: "auto",
+                marginBottom: "-50px",
+              }}
+            >
               <button className={modules.buttonSubmit} onClick={handleSave}>
                 Save
               </button>
@@ -196,7 +208,8 @@ export default function Card() {
         )}
 
         <button
-          className={modules.buttonSubmit} style={{marginTop:'40px'}}
+          className={modules.buttonSubmit}
+          style={{ marginTop: "40px" }}
           onClick={() => setIsModalOpen(true)}
         >
           {"+"}

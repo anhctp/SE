@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('progress', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('lesson_id')->references('id')->on('lessons');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
             $table->integer('score');
             $table->boolean('done');
             $table->timestamps();

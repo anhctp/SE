@@ -46,12 +46,17 @@ export default function Create() {
   const handleSubmit = async (ans) => {
     try {
       if (ans === trueAns) {
-        setScore(score + 1);
         const result = await client.post(
           `http://localhost:8000/api/lesson/${id}/question/${question_id}`,
           { answer: ans }
         );
-        notification.success({ message: "Your score: " + score });
+        setScore(result.score);
+        notification.success({message: "Your answer is correct"});
+        if (score >= 0) {
+          notification.success({ message: "Your score: " + score });
+        } else {
+          notification.success({ message: result.message });
+        }
 
         if (parseInt(question_id) < parseInt(questions.question_num)) {
           router.push(
@@ -59,17 +64,19 @@ export default function Create() {
           );
           setCurrentID(currentID + 1);
         }
-      } else if (answer.length > 0) {
+      } else if (answer != "") {
         notification.error({ message: "The correct answer is: " + trueAns });
+      } else {
+        notification.error({message: "Need your choice!"})
       }
 
       if (score === parseInt(questions.question_num)) {
         router.push(`/`);
-        notification.success({message: "Lesson " + id + " is done"})
+        notification.success({ message: "Lesson " + id + " is done" });
       }
     } catch (error) {
       notification.error({
-        message: "Bạn chưa đăng nhập",
+        message: "You need to login!",
       });
       router.push("../../../../auth/login");
     }
