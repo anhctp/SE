@@ -54,8 +54,15 @@ export default function Create() {
         // Update the score if the request was successful
 
         notification.success({ message: "Your score: " + result.score });
-        router.push(`../question/${question_id+1}`);
-      } else {
+        
+        
+        if (parseInt(question_id) < parseInt(questions.question_num)) {
+            router.push(
+              `../../../lesson/${id}/question/${parseInt(question_id) + 1}`
+            );
+            setCurrentID(currentID + 1);
+          }
+      } else if (answer.length > 0) {
         notification.error({ message: "The correct answer is: " + trueAns });
       }
     } catch (error) {
@@ -150,7 +157,7 @@ export default function Create() {
               D: {questions.f_ans3}
             </button>
           </div>
-
+          
           <div>
             <button
               className={modules.buttonSubmit}

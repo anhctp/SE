@@ -17,11 +17,7 @@ import { token } from "../../utils/token";
 export default function Lesson() {
   /* useState để lưu trữ các bài học */
   const [lessons, setLessons] = useState([]);
-
-  // Set the Authorization header with the bearer token
-  if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  }
+  
   /* useEffect để gọi function fetchLessons khi component được load lần đầu tiên. */
   useEffect(() => {
     async function loadLessons() {
