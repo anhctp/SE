@@ -36,7 +36,7 @@ export default function Account() {
   const [flashCards, setFlashCards] = useState([]);
   const [completedLesson, setCompletedLesson] = useState(0)
   const gridStyle = {
-    width: "25%",
+    width: "100%",
     textAlign: "center",
   };
 
@@ -77,6 +77,7 @@ export default function Account() {
 
   useEffect(() => {
     lessonService.getAll().then((res) => {
+      console.log(res.filter((e) => e.id == completedLesson));
       setLessons(res.filter((e) => e.id == completedLesson));
     });
   }, [completedLesson]);
@@ -97,7 +98,8 @@ export default function Account() {
       try {
         const res = await authSevice.auth();
         getFlashCards();
-        setCompletedLesson(res.completed_lesson)
+        console.log(res);
+        setCompletedLesson(res.complete_lesson)
         setProfile(res);
       } catch (error) {
         notification.error({ message: "Bạn chưa đăng nhập"});
@@ -154,7 +156,7 @@ export default function Account() {
                           <Row>
                           <Typography.Title
                                 level={1}
-                                style={{ margin: 0, fontSize: "48px" }}
+                                style={{ margin: 0, fontSize: "30px" }}
                               >
                                 {profile.name}
                               </Typography.Title>
@@ -165,8 +167,8 @@ export default function Account() {
                             justify="start"
                             style={{ marginTop: "6px" }}
                           >
-                          
-                              <Typography.Text
+            
+                            <Typography.Text
                                  style={{
                                   fontSize: "32px",
                                   textAlign: "start",
@@ -175,9 +177,9 @@ export default function Account() {
                                 strong
                                 italic
                               >
-                                Email
+                                
                               </Typography.Text>
-                              <Typography.Text style={{ fontSize: "20px" }}>
+                              <Typography.Text style={{ fontSize: "30px" }}>
                                 {profile.email}
                               </Typography.Text>
                           </Row>
@@ -186,11 +188,11 @@ export default function Account() {
                         <Col span={6}>
                           <Row justify="center">
                             <Col
-                              style={{ marginTop: "12px", width: "100%" }}
+                              style={{ marginTop: "65px", width: "100%" }}
                               span={12}
                             >
                               <Button
-                                style={{ width: "100%" }}
+                                style={{ width: "100%", marginTop: "auto" }}
                                 type="primary"
                                 icon={<EditOutlined />}
                                 onClick={openModal}
@@ -199,6 +201,7 @@ export default function Account() {
                               </Button>
                             </Col>
                           </Row>
+                        
                           <Row justify="center">
                             <Col
                               style={{ marginTop: "12px", width: "100%" }}
@@ -227,7 +230,7 @@ export default function Account() {
               </Row>
             </Divider>
             <Row
-              style={{ height: "100px", overflowY: 'auto' }}
+              style={{ maxHeight: "100px", overflowY: "auto" }}
               justify="center"
             >
               
@@ -271,6 +274,7 @@ export default function Account() {
               <Col span={10}>
                 <Card title="Done">
                   <Skeleton loading={loading} avatar active></Skeleton>
+                  <div style={{display: "flex", justifyContent: "center"}}>
                   {!loading && (
                     <Card>
                       {lessons.length == 0 && <Typography>You haven't learned any lesson yet.</Typography>}
@@ -281,6 +285,7 @@ export default function Account() {
                       ))}
                     </Card>
                   )}
+                  </div>
                 </Card>
               </Col>
             </Row>
