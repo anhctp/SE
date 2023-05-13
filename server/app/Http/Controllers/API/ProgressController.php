@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Progress;
 use App\Models\Answer;
 use GuzzleHttp\Handler\Proxy;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 use function PHPUnit\Framework\isNull;
 
@@ -61,23 +62,35 @@ class ProgressController extends Controller
             
             $progress->save();
         } 
-        if ($user_answer === $answer->t_ans) {
-            $progress->score = $progress->score + 1;
-            $progress->update();
-            // return true;
-            $question_num = DB::table('questions')
-            ->where('questions.lesson_id', '=', $id)
+        
+        $isAnswer = DB::table('answers')
+            ->select('answers.id')
+            ->where('user_id', '=', $user_id)
+            ->where('lesson_id', '=', $id)
+            ->where('question_id', '=', $question_id)
+            ->where('answer', '=', $user_answer)
             ->count();
-            if($progress->score == $question_num) {
-                $progress->done = 1;
+
+        if ($user_answer === $answer->t_ans) {
+            if($isAnswer > 1) {
+                return response()->json(['message' => 'You have got score for this question!']);
+            } else {
+                $progress->score = $progress->score + 1;
                 $progress->update();
-            }  
-            return response()->json([
-                // 'lesson_id' => $id,
-                'question_id' => $question_id,
-                'answer' => $request->answer,
-                'score' => $progress->score,
-            ]);
+                $question_num = DB::table('questions')
+                ->where('questions.lesson_id', '=', $id)
+                ->count();
+                if($progress->score == $question_num) {
+                    $progress->done = 1;
+                    $progress->update();
+                }  
+                return response()->json([
+                    // 'lesson_id' => $id,
+                    'question_id' => $question_id,
+                    'answer' => $request->answer,
+                    'score' => $progress->score,
+                ]);
+            } 
         } else {
             return response()->json([
                 // 'lesson_id' => $id,
