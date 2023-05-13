@@ -1,13 +1,13 @@
 /*flashcard*/
 .flashcard {
   position: relative;
-  width: 640px;
+  width: 620px;
   height: 300px;
   perspective: 1000px; /* Tạo hiệu ứng 3D */
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 70px;
-  margin-top: 30px;
+  margin-bottom: 40px;
+  margin-top: -10px;
   font-family: "MyCustomFont";
   font-size: 48px;
 }
@@ -25,10 +25,6 @@
   box-sizing: border-box;
   width: 620px;
   height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 60px;
-  margin-top: 30px;
   border: 1px solid #000000;
 }
 
@@ -57,7 +53,7 @@
   width: 500px;
   height: 50px;
   margin-left: auto;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-right: 10px;
   margin-right: auto;
   border: 1px solid #000000;

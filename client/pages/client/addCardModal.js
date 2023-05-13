@@ -24,7 +24,6 @@ import {
       for (const card of cards) {
         try {
           await client.post("flashcards", card);
-          window.location.reload();
           notification.success({
             message: "Added card with word " + card.front + "!",
           });
@@ -33,6 +32,8 @@ import {
           notification.error({ message: "Có lỗi xảy ra vui lòng thử lại sau" });
         }
       }
+      
+      window.location.reload();
     };
   
     const onFinish = () => {
@@ -173,7 +174,7 @@ import {
                     },
                   ]);
                 }}
-                style={{ width: "100%" }}
+                style={{ width: "100%", }}
                 type="primary"
                 icon={<PlusCircleFilled />}
               >

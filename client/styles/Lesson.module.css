@@ -79,6 +79,7 @@
   border-spacing: 2px;
   width: 1050px;
 
+  margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
   font-family: "MyCustomFont1";
@@ -169,13 +170,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 160px;
+  width: 500px;
   height: 30px;
   margin-left: auto;
   margin-right: auto;
 }
 .button {
-  border-radius: 48%;
+  border-radius: 100%;
   display: flex;
   justify-items: center;
   padding: 0 auto;

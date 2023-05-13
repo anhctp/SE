@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import authSevice from "../../services/auth.service";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-
+import validator from "validator";
 import client from "../../utils/client";
 import dayjs from "dayjs";
 import { token } from "../../utils/token";
@@ -34,10 +34,13 @@ export default function Account() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [flashCards, setFlashCards] = useState([]);
-  const [completedLesson, setCompletedLesson] = useState(0)
+  const [completedLesson, setCompletedLesson] = useState(0);
   const gridStyle = {
     width: "100%",
     textAlign: "center",
+    fontSize: "24px",
+    fontWeight: "900",
+    margin: "10px auto 10px",
   };
 
   const handleLogout = async () => {
@@ -61,16 +64,19 @@ export default function Account() {
     },
     enableReinitialize: true,
     async onSubmit(values) {
-      try {
-        await authSevice.update(values);
-        setIsModalOpen(false);
-        window.location.reload();
-        notification.success({
-          message: "Bạn đã cập nhật tài khoản thành công",
-        });
-        setProfile(values);
-      } catch (error) {
-        notification.error({ message: error.response.data.message });
+      if (validator.isEmail(values.email)) {
+        try {
+          await authSevice.update(values);
+          setIsModalOpen(false);
+          notification.success({
+            message: "Bạn đã cập nhật tài khoản thành công",
+          });
+          setProfile(values);
+        } catch (error) {
+          notification.error({ message: "Bạn chưa nhập đủ thông tin" });
+        }
+      } else {
+        notification.error({message: "Email chưa chính xác"})
       }
     },
   });
@@ -99,10 +105,10 @@ export default function Account() {
         const res = await authSevice.auth();
         getFlashCards();
         console.log(res);
-        setCompletedLesson(res.complete_lesson)
+        setCompletedLesson(res.complete_lesson);
         setProfile(res);
       } catch (error) {
-        notification.error({ message: "Bạn chưa đăng nhập"});
+        notification.error({ message: "Bạn chưa đăng nhập" });
         setLoading(false);
         router.push("/auth/login");
       }
@@ -137,15 +143,15 @@ export default function Account() {
                             <Image
                               width={200}
                               style={{ borderRadius: "50%" }}
-                              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRov3osGD602hK59_f_b5AC8qxej4aoLUvLNvIII_bVMWKm1jtN"
                               preview={{
-                                src: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+                                src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRov3osGD602hK59_f_b5AC8qxej4aoLUvLNvIII_bVMWKm1jtN",
                               }}
                             />
                           </div>
                         </Col>
                         <Col span={8}>
-                        <div
+                          <div
                             style={{
                               display: "flex",
                               justifyContent: "center",
@@ -153,36 +159,35 @@ export default function Account() {
                               height: "100%",
                             }}
                           >
-                          <Row>
-                          <Typography.Title
+                            <Row>
+                              <Typography.Title
                                 level={1}
-                                style={{ margin: 0, fontSize: "30px" }}
+                                style={{
+                                  marginBottom: "10px",
+                                  fontSize: "40px",
+                                }}
                               >
                                 {profile.name}
                               </Typography.Title>
-                          </Row>
+                            </Row>
 
-                          <Row
-                            align="middle"
-                            justify="start"
-                            style={{ marginTop: "6px" }}
-                          >
-            
-                            <Typography.Text
-                                 style={{
+                            <Row
+                              align="middle"
+                              justify="start"
+                              style={{ marginTop: "6px" }}
+                            >
+                              <Typography.Text
+                                style={{
                                   fontSize: "32px",
                                   textAlign: "start",
-                                  marginRight: "10px",
                                 }}
                                 strong
                                 italic
-                              >
-                                
-                              </Typography.Text>
+                              ></Typography.Text>
                               <Typography.Text style={{ fontSize: "30px" }}>
                                 {profile.email}
                               </Typography.Text>
-                          </Row>
+                            </Row>
                           </div>
                         </Col>
                         <Col span={6}>
@@ -201,7 +206,7 @@ export default function Account() {
                               </Button>
                             </Col>
                           </Row>
-                        
+
                           <Row justify="center">
                             <Col
                               style={{ marginTop: "12px", width: "100%" }}
@@ -224,71 +229,143 @@ export default function Account() {
                 </Col>
               </Row>
             )}
-            <Divider style={{ fontWeight: "500" }} orientation="left">
-              <Row align="center" justify="space-between">
-                <Typography.Title level={2}>Flash Card</Typography.Title>{" "}
-              </Row>
-            </Divider>
-            <Row
-              style={{ maxHeight: "100px", overflowY: "auto" }}
-              justify="center"
-            >
-              
-              <Col span={18}>
-                <Skeleton loading={loading} avatar active></Skeleton>
-                {!loading &&
-                  flashCards.map((card) => (
-                    <div
-                      style={{
-                        width: "100%",
-                        position: "relative",
-                        marginTop: "12px",
-                        borderRadius: "10px",
-                        backgroundColor: "lightgray",
-                      }}
-                      key={card.id}
-                    >
-                      <div style={{ padding: "12px 8px" }}>
-                        <h4>{card.front}</h4>
-                      </div>
-                      <p
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 10,
-                          transform: "translateY(-50%)",
-                        }}
-                      >
-                        {dayjs(card.created_at).format("DD/MM/YYYY")}
-                      </p>
-                    </div>
-                  ))}
-              </Col>
-            </Row>
-            <Divider style={{ fontWeight: "500" }} orientation="left">
-              <Row align="center" justify="space-between">
-                <Typography.Title level={2}>Lessons</Typography.Title>{" "}
-              </Row>
-            </Divider>
-            <Row justify="space-evenly" style={{ padding: "10px 12px" }}>
-              <Col span={10}>
-                <Card title="Done">
-                  <Skeleton loading={loading} avatar active></Skeleton>
-                  <div style={{display: "flex", justifyContent: "center"}}>
-                  {!loading && (
-                    <Card>
-                      {lessons.length == 0 && <Typography>You haven't learned any lesson yet.</Typography>}
-                       {lessons.map((lesson) => (
-                        <Card.Grid style={gridStyle} key={lesson.id}>
-                          {lesson.title}
-                        </Card.Grid>
+
+            <div style={{ display: "flex", marginTop: "20px" }}>
+              <div
+                style={{
+                  fontWeight: "500",
+                  width: "50%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+                orientation="left"
+              >
+                <Row
+                  style={{
+                    width: "100%",
+                    paddingLeft: "40px",
+                    marginRight: "auto",
+                  }}
+                >
+                  <Typography.Title level={2}>Flash Card</Typography.Title>{" "}
+                </Row>
+
+                <Row
+                  style={{
+                    overflowY: "auto",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    height: "400px",
+                  }}
+                  justify="center"
+                >
+                  <Col
+                    span={18}
+                    style={{
+                      fontSize: "24px",
+                    }}
+                  >
+                    <Skeleton loading={loading} avatar active></Skeleton>
+                    {!loading &&
+                      flashCards.map((card) => (
+                        <div
+                          style={{
+                            width: "100%",
+                            position: "relative",
+                            marginTop: "20px",
+                            borderRadius: "10px",
+                            backgroundColor: "#ffb300",
+                          }}
+                          key={card.id}
+                        >
+                          <div style={{ padding: "12px 8px" }}>
+                            <h4>{card.front}</h4>
+                          </div>
+                          <p
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 10,
+                              transform: "translateY(-50%)",
+                            }}
+                          >
+                            {dayjs(card.created_at).format("DD/MM/YYYY")}
+                          </p>
+                        </div>
                       ))}
-                    </Card>
-                  )}
-                  </div>
-                </Card>
-              </Col>
-            </Row>
+                  </Col>
+                </Row>
+              </div>
+
+              <div
+                style={{
+                  fontWeight: "500",
+                  width: "50%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  borderLeft: "lightgray 1px solid",
+                }}
+                orientation="left"
+              >
+                <Row
+                  style={{
+                    width: "100%",
+                    paddingLeft: "40px",
+                    marginRight: "auto",
+                  }}
+                >
+                  <Typography.Title level={2}>Progress</Typography.Title>{" "}
+                </Row>
+
+                <Row
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    height: "400px",
+                  }}
+                >
+                  <Col
+                    span={18}
+                    style={{
+                      fontSize: "24px",
+                      paddingLeft: "80px",
+                    }}
+                  >
+                    <div>
+                      <Skeleton loading={loading} avatar active></Skeleton>
+                      <div>
+                        {!loading && (
+                          <div
+                            style={{
+                              border: "2px #ffb200 solid",
+                              borderRadius: "10px",
+                              width: "120%",
+                              height: "65px",
+                              position: "relative",
+                              marginTop: "20px",
+                            }}
+                          >
+                            {lessons.length == 0 && (
+                              <Typography>
+                                You haven't learned any lesson yet.
+                              </Typography>
+                            )}
+                            {lessons.map((lesson) => (
+                              <Card.Grid style={gridStyle} key={lesson.id}>
+                                Lesson {lesson.id}: {lesson.title}
+                              </Card.Grid>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </div>
           </>
 
           {/* PROFILE ENDS */}
