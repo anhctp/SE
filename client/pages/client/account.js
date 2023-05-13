@@ -2,7 +2,6 @@ import UserAccount from "./acc/user";
 import AdminAccount from "./acc/admin";
 import client from "../../utils/client";
 import { useState, useEffect } from "react";
-import {notification} from 'antd';
 
 export default function Account() {
   //admin control acc

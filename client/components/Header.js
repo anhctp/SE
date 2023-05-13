@@ -4,7 +4,6 @@ import useStore from "../store";
 import Spinner from "./Spinner";
 import { authApi } from "../pages/api/authApi";
 import { GenericResponse } from "../pages/api/types";
-import { LoadingButton } from "./LoadingButton";
 
 const Header = () => {
   const store = useStore();

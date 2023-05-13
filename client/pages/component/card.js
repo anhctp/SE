@@ -45,7 +45,7 @@ export default function Card() {
         `http://localhost:8000/api/flashcard/${flashcards[currentID].id}`
       );
       setDeleted(true);
-      window.location.reload();
+      router.reload();
       notification.success({
         message: "Deleted",
       });
@@ -83,7 +83,7 @@ export default function Card() {
             back,
           }
         );
-        window.location.reload();
+        router.reload();
         notification.success({ message: "Updated" });
       } catch (error) {
         notification.error({ message: error });

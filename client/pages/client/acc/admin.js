@@ -5,7 +5,6 @@ import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import {
   Card,
   Col,
-  Skeleton,
   Row,
   Image,
   Typography,
@@ -27,7 +26,6 @@ import modules from "../../../styles/admin.module.css";
 export default function AdminAccount() {
   const router = useRouter();
   const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -77,11 +75,9 @@ export default function AdminAccount() {
           `http://localhost:8000/api/admin/accounts`
         );
         setTable(response);
-        setLoading(false);
       } catch (error) {
         notification.error({ message: error });
       }
-      setLoading(false);
     };
 
     const fetchData = async () => {
@@ -91,7 +87,6 @@ export default function AdminAccount() {
         setProfile(res);
       } catch (error) {
         notification.error({ message: "You need to login!" });
-        setLoading(false);
         router.push("/auth/login");
       }
     };
@@ -105,7 +100,7 @@ export default function AdminAccount() {
     try {
       await client.delete(`http://localhost:8000/api/admin/account/${id}`);
       setDeleted(true);
-      window.location.reload();
+      router.reload();
       notification.success({
         message: "Deleted",
       });
@@ -117,6 +112,7 @@ export default function AdminAccount() {
   if (deleted) {
     return null;
   }
+  
   return (
     <main>
       <Head>
@@ -132,103 +128,92 @@ export default function AdminAccount() {
               <Row>
                 <Col span={24}>
                   <Card>
-                    <Skeleton loading={loading} avatar active></Skeleton>
-                    {!loading && (
-                      <Row>
-                        <Col span={8}>
-                          <div
-                            style={{
-                              borderRadius: "50%",
-                              overflow: "hidden",
-                              width: "fit-content",
-                              margin: "0 auto",
+                    <Row>
+                      <Col span={8}>
+                        <div
+                          style={{
+                            borderRadius: "50%",
+                            overflow: "hidden",
+                            width: "fit-content",
+                            margin: "0 auto",
+                          }}
+                        >
+                          <Image
+                            width={200}
+                            style={{ borderRadius: "50%" }}
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRov3osGD602hK59_f_b5AC8qxej4aoLUvLNvIII_bVMWKm1jtN"
+                            preview={{
+                              src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRov3osGD602hK59_f_b5AC8qxej4aoLUvLNvIII_bVMWKm1jtN",
                             }}
-                          >
-                            <Image
-                              width={200}
-                              style={{ borderRadius: "50%" }}
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRov3osGD602hK59_f_b5AC8qxej4aoLUvLNvIII_bVMWKm1jtN"
-                              preview={{
-                                src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRov3osGD602hK59_f_b5AC8qxej4aoLUvLNvIII_bVMWKm1jtN",
+                          />
+                        </div>
+                      </Col>
+                      <Col span={8}>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            height: "100%",
+                          }}
+                        >
+                          <Row>
+                            <Typography.Title
+                              level={1}
+                              style={{
+                                marginBottom: "10px",
+                                fontSize: "40px",
                               }}
-                            />
-                          </div>
-                        </Col>
-                        <Col span={8}>
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              flexDirection: "column",
-                              height: "100%",
-                            }}
+                            >
+                              {profile.name}
+                            </Typography.Title>
+                          </Row>
+
+                          <Row
+                            align="middle"
+                            justify="start"
+                            style={{ marginTop: "6px" }}
                           >
-                            <Row>
-                              <Typography.Title
-                                level={1}
-                                style={{
-                                  marginBottom: "10px",
-                                  fontSize: "40px",
-                                }}
-                              >
-                                {profile.name}
-                              </Typography.Title>
-                            </Row>
-
-                            <Row
-                              align="middle"
-                              justify="start"
-                              style={{ marginTop: "6px" }}
-                            >
-                              <Typography.Text
-                                style={{
-                                  fontSize: "32px",
-                                  textAlign: "start",
-                                }}
-                                strong
-                                italic
-                              ></Typography.Text>
-                              <Typography.Text style={{ fontSize: "30px" }}>
-                                {profile.email}
-                              </Typography.Text>
-                            </Row>
-                          </div>
-                        </Col>
-                        <Col span={6}>
-                          <Row justify="center">
-                            <Col
-                              style={{ marginTop: "65px", width: "100%" }}
-                              span={12}
-                            >
-                              <Button
-                                style={{ width: "100%", marginTop: "auto" }}
-                                type="primary"
-                                icon={<EditOutlined />}
-                                onClick={openModal}
-                              >
-                                Edit
-                              </Button>
-                            </Col>
+                            <Typography.Text style={{ fontSize: "30px" }}>
+                              {profile.email}
+                            </Typography.Text>
                           </Row>
-
-                          <Row justify="center">
-                            <Col
-                              style={{ marginTop: "12px", width: "100%" }}
-                              span={12}
+                        </div>
+                      </Col>
+                      <Col span={6}>
+                        <Row justify="center">
+                          <Col
+                            style={{ marginTop: "65px", width: "100%" }}
+                            span={12}
+                          >
+                            <Button
+                              style={{ width: "100%", marginTop: "auto" }}
+                              type="primary"
+                              icon={<EditOutlined />}
+                              onClick={openModal}
                             >
-                              <Button
-                                style={{ width: "100%" }}
-                                type="primary"
-                                icon={<UserOutlined />}
-                                onClick={handleLogout}
-                              >
-                                Sign out
-                              </Button>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    )}
+                              Edit
+                            </Button>
+                          </Col>
+                        </Row>
+
+                        <Row justify="center">
+                          <Col
+                            style={{ marginTop: "12px", width: "100%" }}
+                            span={12}
+                          >
+                            <Button
+                              style={{ width: "100%" }}
+                              type="primary"
+                              icon={<UserOutlined />}
+                              onClick={handleLogout}
+                            >
+                              Sign out
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
                   </Card>
                 </Col>
               </Row>

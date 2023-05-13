@@ -25,7 +25,7 @@ export default function Create() {
   const { id, question_id } = router.query;
   const [questions, setQuestion] = useState({});
   const [answer, setAnswer] = useState("");
-  const [score, setScore] = useState(1);
+  const [score, setScore] = useState(0);
   const [trueAns, setTrueAns] = useState("");
 
   //GET
@@ -50,10 +50,9 @@ export default function Create() {
           `http://localhost:8000/api/lesson/${id}/question/${question_id}`,
           { answer: ans }
         );
-        setScore(result.score);
-        notification.success({message: "Your answer is correct"});
-        if (score >= 0) {
-          notification.success({ message: "Your score: " + score });
+        notification.success({ message: "Your answer is correct" });
+        if (result.score > 0) {
+          notification.success({ message: "Your score: " + result.score });
         } else {
           notification.success({ message: result.message });
         }
@@ -64,16 +63,14 @@ export default function Create() {
           );
           setCurrentID(currentID + 1);
         }
-      } else if (answer != "") {
-        notification.error({ message: "The correct answer is: " + trueAns });
-      } else {
-        notification.error({message: "Need your choice!"})
-      }
 
-      if (score === parseInt(questions.question_num)) {
-        router.push(`/`);
-        notification.success({ message: "Lesson " + id + " is done" });
-      }
+        if (result.score === parseInt(questions.question_num)) {
+          router.push(`/`);
+          notification.success({ message: "Lesson " + id + " is done" });
+        }
+      } else {
+        notification.error({ message: "The correct answer is: " + trueAns });
+      } 
     } catch (error) {
       notification.error({
         message: "You need to login!",
