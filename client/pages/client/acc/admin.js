@@ -104,7 +104,9 @@ export default function AdminAccount() {
 
   const handleDelete = async (id) => {
     try {
-      await client.delete(`http://localhost:8000/api/admin/account/${id}`);
+      await client.delete(`http://localhost:8000/api/admin/account/${id}`, {
+        id,
+      });
       setDeleted(true);
       window.location.reload();
       notification.success({
@@ -298,19 +300,22 @@ export default function AdminAccount() {
                   <td className={modules.td}>{tables.email}</td>
                   <td className={modules.td}>{tables.role}</td>
                   <td className={modules.td}>{tables.created_at}</td>
-                  <td className={modules.td}>
-                    <button
-                      style={{
-                        margin: "auto",
-                        borderRadius: "0",
-                        width: "100%",
-                      }}
-                      className={module.buttonSubmit}
-                      onClick={handleDelete}
-                    >
-                      Delete
-                    </button>
-                  </td>
+                  {tables.role == 0 && (
+                    <td className={modules.td}>
+                      <button
+                        style={{
+                          margin: "auto",
+                          color: "red",
+                        }}
+                        onClick={() => handleDelete(tables.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  )}
+                  {tables.role === 1 && (
+                    <td className={modules.td}></td>
+                  )}
                 </tr>
               ))}
             </tbody>
