@@ -14,11 +14,13 @@ export default function Sidebar() {
       <Link
         href="/"
         className={
-          router.pathname === "/" || router.pathname === "/client/lesson" ||
+          router.pathname === "/" ||
+          router.pathname === "/client/lesson" ||
           router.pathname === "/client/lesson/[id]/grammar" ||
           router.pathname === "/client/lesson/[id]/kanji" ||
           router.pathname === "/client/lesson/[id]/vocab" ||
-          router.pathname === "/client/lesson/[id]/question"
+          router.pathname === "/client/lesson/[id]/question" ||
+          router.pathname === "/client/lesson/[id]/question/[question_id]"
             ? styles.activeButton1
             : styles.button1
         }
@@ -28,7 +30,7 @@ export default function Sidebar() {
       <Link
         href="/client/flashcard"
         className={
-          router.pathname === "/client/flashcard"
+          router.pathname === "/client/flashcard" 
             ? styles.activeButton1
             : styles.button1
         }
@@ -38,7 +40,7 @@ export default function Sidebar() {
       <Link
         href="/client/account"
         className={
-          router.pathname === "/client/account"
+          router.pathname === "/client/acc/user" || router.pathname ==="/client/acc/admin"
             ? styles.activeButton1
             : styles.button1
         }

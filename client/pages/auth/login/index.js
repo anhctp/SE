@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AuthService from "../../../services/auth.service";
 import { token } from "../../../utils/token";
 import { useRouter } from "next/router";
-
+import { notification } from "antd";
 import { object, string, TypeOf } from "zod";
 import { useEffect } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
@@ -27,8 +27,12 @@ const Login = () => {
   const handleLogin = async (values) => {
     try {
       const res = await AuthService.login(values);
+      if (res.status != 200) {
+        notification.error({ message: res.message });
+        return;
+      }
       token.set(res.token);
-      router.push("/");
+      router.push(window.history.back(), token);
     } catch (error) {}
   };
 
@@ -55,21 +59,33 @@ const Login = () => {
   };
 
   return (
-    <section>
+    <section className="min-h-screen grid place-items-center">
       <div
         style={{
           position: "absolute",
-          right: "10%",
-          top: "10%",
+          right: "2%",
+          top: "4%",
           borderRadius: "50%",
-          width: "300px",
           zIndex: -1,
         }}
       >
         <img
-          style={{ borderRadius: "50%" }}
-          src="/image/345230497_556958093258722_2634146501096535841_n.jpg"
+          src="/image/vitvang1.jpg"
         ></img>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: "-2%",
+          top: "25%",
+          borderRadius: "50%",
+          zIndex: -1,
+        }}
+      >
+        <img
+          src="/image/vitvang.jpg"
+        ></img>
+        
       </div>
       <div className="w-full z-10">
         <FormProvider {...methods}>
@@ -97,7 +113,7 @@ const Login = () => {
             </span>
           </form>
         </FormProvider>
-      </div>
+        </div>
     </section>
   );
 };

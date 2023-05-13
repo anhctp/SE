@@ -1,6 +1,6 @@
-import { ConfigProvider } from "antd";
 import "../styles/globals.css";
-
+import { ConfigProvider } from "antd";
+import { StyleProvider } from "@ant-design/cssinjs";
 export default function MyApp({ Component, pageProps }) {
   return (
     <ConfigProvider
@@ -10,7 +10,9 @@ export default function MyApp({ Component, pageProps }) {
         },
       }}
     >
-      <Component {...pageProps} />
+       <StyleProvider hashPriority="high">
+        <Component {...pageProps} />
+      </StyleProvider>
     </ConfigProvider>
   );
 }

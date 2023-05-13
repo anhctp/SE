@@ -1,0 +1,75 @@
+/*flashcard*/
+.flashcard {
+  position: relative;
+  width: 620px;
+  height: 300px;
+  perspective: 1000px; /* Tạo hiệu ứng 3D */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-top: -10px;
+  font-family: "MyCustomFont";
+  font-size: 48px;
+}
+
+.flashcard .front,
+.flashcard .back {
+  position: absolute;
+  backface-visibility: hidden; /* Ẩn phía sau của thẻ */
+  transition: transform 0.6s; /* Tạo hiệu ứng lật */
+
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 620px;
+  height: 300px;
+  border: 1px solid #000000;
+}
+
+.flashcard .front {
+  transform: rotateX(0deg); /* Thẻ mặt trước */
+}
+
+.flashcard .back {
+  transform: rotateX(180deg); /* Thẻ mặt sau */
+}
+
+.flashcard:hover .front {
+  transform: rotateX(180deg); /* Lật thẻ khi rê chuột qua thẻ */
+}
+
+.flashcard:hover .back {
+  transform: rotateX(0deg); /* Lật thẻ khi rê chuột qua thẻ */
+}
+
+.input {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 500px;
+  height: 50px;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-right: auto;
+  border: 1px solid #000000;
+  border-radius: 20px;
+
+  font-family: 'MyCustomFont1';
+  font-weight: 400;
+  font-size: 24px;
+}
+
+/*font*/
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('../public/avenir_ff/AvenirLTStd-Black.otf') format('truetype');
+  
+    font-family: 'MyCustomFont1';
+    src: url('../public/avenir_ff/AvenirLTStd-Roman.otf') format('truetype');
+  }
+  

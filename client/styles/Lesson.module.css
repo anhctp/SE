@@ -9,10 +9,10 @@
 
 /*content cua grammar*/
 .box1 {
-  width: 1050px;
+  width: auto;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 80px;
+  margin-right: 80px;
   margin-top: 30px;
   margin-bottom: 30px;
   background: #fffdf3;
@@ -32,7 +32,6 @@
   justify-content: center;
 
   font-family: "MyCustomFont1";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
@@ -45,7 +44,6 @@
   width: 1000px;
   height: auto;
   font-family: "MyCustomFont1";
-  font-style: normal;
   font-weight: lighter;
   font-size: 24px;
 
@@ -54,12 +52,13 @@
 
 /*box cua phan tieu de cua bai hoc*/
 .box3 {
-  text-decoration: none;
   box-sizing: border-box;
-  width: 600px;
+  width: max-content;
+  padding-left: 40px;
+  padding-right: 40px;
   height: 70px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -68,12 +67,9 @@
   background: #ffba30e2;
   border: 1px solid #000000;
   border-radius: 20px;
-
   font-family: "MyCustomFont1";
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 36px;
-  line-height: 24px;
 
   color: #000000;
 }
@@ -85,11 +81,10 @@
   border-spacing: 2px;
   width: 1050px;
 
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "MyCustomFont1";
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   align-items: center;
@@ -140,103 +135,78 @@
 .box4 {
   display: flex;
   width: 620px;
-  height: 400px;
-  margin-top: 60px;
-  margin-bottom: 20px;
+  height: auto;
+  margin-top: 70px;
+  margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
-
+  align-items: center;
   border: 1px solid #000000;
 }
 .box5L {
-  width: 310px;
-  height: 300px;
+  width: 280px;
+  height: auto;
   text-align: center;
 
   font-family: "MyCustomFont";
-  font-style: normal;
   margin-top: auto;
   margin-bottom: auto;
   font-weight: 400;
-  font-size: 200px;
+  font-size: 150px;
+  border-right: #000000 1px inset;
 }
 .box5R {
-  width: 310px;
-  height: 400px;
+  width: 340px;
+  height: auto;
   padding-left: 20px;
   text-align: left;
-  border-left: #000000 1px inset;
-
+  justify-content: center;
+  
   font-family: "MyCustomFont";
-  font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 30px;
+}
+
+/* dieu huong trang */
+.ID_number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .button {
   border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
-  background-color: #ffffff;
-}
-
-/*flashcard*/
-.flashcard {
-  position: relative;
-  width: 640;
-  height: 400px;
-  perspective: 1000px; /* Tạo hiệu ứng 3D */
-}
-
-.flashcard .front,
-.flashcard .back {
-  position: absolute;
-  backface-visibility: hidden; /* Ẩn phía sau của thẻ */
-  transition: transform 0.6s; /* Tạo hiệu ứng lật */
-
   display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  width: 620px;
-  height: 400px;
-  margin-left: 262px;
-
-  border: 1px solid #000000;
+  justify-items: center;
+  padding: 0 auto;
+  height: auto;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+  border: #000000 1px solid;
 }
-
-.flashcard .front {
-  transform: rotateX(0deg); /* Thẻ mặt trước */
-}
-
-.flashcard .back {
-  transform: rotateX(180deg); /* Thẻ mặt sau */
-}
-
-.flashcard:hover .front {
-  transform: rotateX(180deg); /* Lật thẻ khi rê chuột qua thẻ */
-}
-
-.flashcard:hover .back {
-  transform: rotateX(0deg); /* Lật thẻ khi rê chuột qua thẻ */
+.button:hover {
+  background-color: #ffb200;
 }
 
 /*questions*/
 .boxMCQ {
   display: flex;
-  width: 1000px;
+  width: auto;
   height: 80px;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 80px;
+  margin-right: 80px;
 }
+
 .boxAnswer {
   display: flex;
-  border: #ffb200 1px solid;
+  border: 1px solid rgba(255, 178, 0, 0.8);
   border-radius: 20px;
   margin-left: auto;
   margin-top: 30px;
@@ -249,34 +219,76 @@
   padding-left: 20px;
 
   font-family: "MyCustomFont";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
 }
-.p {
-  font-family: "MyCustomFont";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 28px;
-  text-align: left;
-  padding-left: 100px;
+.boxAnswer:hover {
+  background-color: rgba(255, 178, 0, 0.8);
+  border: #000000 1px solid;
 }
-.boxQuestion {
-  display: flex;
-  border: #ffb200 1px solid;
+.boxAnswerActive {
+  border: #000000 1px solid;
+  background-color: rgba(255, 178, 0, 0.8);
+  border-radius: 20px;
   margin-left: auto;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   margin-right: auto;
-  width: 950px;
-  height: 150px;
-  border-radius: 50px;
+  width: 450px;
+  height: 50px;
   text-align: left;
   align-items: center;
   padding-left: 20px;
 
   font-family: "MyCustomFont";
-  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.p {
+  font-family: "MyCustomFont";
   font-weight: 600;
-  font-size: 28px;
+  font-size: 26px;
+  text-align: left;
+}
+.boxQuestion {
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid rgba(255, 178, 0, 0.8);
+  margin-left: 80px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 80px;
+  width: auto;
+  height: auto;
+  border-radius: 30px;
+  text-align: left;
+  padding-bottom: 10px;
+
+  font-family: "MyCustomFont";
+  font-weight: 600;
+  font-size: 36px;
+}
+
+.buttonSubmit {
+  background-color: rgba(255, 178, 0, 0.8);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-right: auto;
+  width: 120px;
+  height: 45px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "MyCustomFont";
+  font-weight: 400;
+  font-size: 24px;
+}
+.buttonSubmit:hover {
+  background-color: #ff8800;
 }

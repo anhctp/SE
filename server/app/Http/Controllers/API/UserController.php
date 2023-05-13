@@ -17,12 +17,16 @@ class UserController extends Controller
         $user_id = auth()->user()->id;
 
         $complete = DB::table('progress')
-        ->select('progress.lesson_id')
-        ->where([
-            ['progress.done', '=', 1], 
-            ['progress.user_id', '=', $user_id]
-        ])
-        ->get();
+            ->select('progress.lesson_id')
+            ->where([
+                ['progress.done', '=', 1],
+                ['progress.user_id', '=', $user_id]
+            ])
+            ->get();
+        $lesson_id = array();
+        foreach ($complete as $each) {
+            $lesson_id[] = $each->lesson_id;
+        }
 
         if ($complete->isEmpty()) {
             return response()->json([
@@ -35,10 +39,12 @@ class UserController extends Controller
         return response()->json([
             'name' => $user->name,
             'email' => $user->email,
-            'complete_lesson' => $complete[0]->lesson_id,
+            'complete_lesson' => $lesson_id,
         ]);
     }
-    public function profileUpdate(Request $request) {
+
+    public function profileUpdate(Request $request)
+    {
         $user = Auth()->user();
         $user->update([
             'name' => $request->name,
@@ -48,12 +54,14 @@ class UserController extends Controller
         return response()->json("Updated");
     }
 
-    public function accounts() {
-        $accounts = User::all();
+    public function accounts()
+    {
+        $accounts = User::select('id', 'name', 'email', 'role', 'created_at')->get();
         return response()->json($accounts);
     }
 
-    public function destroyAccount($id){
+    public function destroyAccount($id)
+    {
         $account = User::find($id);
         $account->delete();
         return response()->json("deleted");

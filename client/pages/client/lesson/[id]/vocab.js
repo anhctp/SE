@@ -1,7 +1,7 @@
 import styles from "../../../../styles/Home.module.css";
 import modules from "../../../../styles/Lesson.module.css";
 import Sidebar from "../../../component/sidebar";
-
+import Head from 'next/head';
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -28,6 +28,9 @@ export default function Vocabulary() {
 
   return (
     <main>
+      <Head>
+        <title>Japper</title>
+      </Head>
       <div className={styles.containerCol}>
         <Sidebar />
 
@@ -43,10 +46,10 @@ export default function Vocabulary() {
                 </tr>
                 {vocabularies.map((vocab) => (
                   <tr key={vocab.id}>
-                    <td className={modules.td1}>
+                    <td key={vocab.id} className={modules.td1}>
                       {vocab.word}
                     </td>
-                    <td className={modules.td}>
+                    <td key={vocab.id} className={modules.td}>
                       {vocab.meaning}
                     </td>
                   </tr>
