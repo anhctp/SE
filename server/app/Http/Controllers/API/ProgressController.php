@@ -14,7 +14,6 @@ use function PHPUnit\Framework\isNull;
 
 class ProgressController extends Controller
 {
-    //
     public function addAnswer($id, $question_id, Request $request)
     {
         $user_id = Auth()->user()->id;
