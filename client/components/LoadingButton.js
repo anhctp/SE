@@ -1,6 +1,5 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import Spinner from "./Spinner";
 
 export const LoadingButton = ({
   textColor = "text-white",
@@ -18,7 +17,7 @@ export const LoadingButton = ({
     >
       {loading ? (
         <div className="flex items-center gap-3">
-          <Spinner />
+          
           <span className="text-slate-500 inline-block">Loading...</span>
         </div>
       ) : (

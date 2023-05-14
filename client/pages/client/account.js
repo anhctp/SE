@@ -22,7 +22,6 @@ import { useEffect, useState } from "react";
 import authSevice from "../../services/auth.service";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import validator from "validator";
 import client from "../../utils/client";
 import dayjs from "dayjs";
 import { token } from "../../utils/token";
