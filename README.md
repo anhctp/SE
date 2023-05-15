@@ -14,3 +14,8 @@ There are some main feature for users:
 - Do review question of each lesson
 - Create your own flashcard
 - View completed lesson
+
+## Technology
+- Front-end: Next.js, Typescript
+- Back-end: Laravel
+- Database: Mysql
